@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const netSubtitle = document.getElementById("netSubtitle");
   const insightTitle = document.getElementById("insightTitle");
   const insightText = document.getElementById("insightText");
-  const resetButton = document.getElementById("resetButton");
 
   let currentPeriod = "today";
   let updateInterval = null;
@@ -24,62 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
       currentPeriod = this.dataset.period;
       updateStats();
     });
-  });
-
-  // Reset button
-  resetButton.addEventListener("click", function () {
-    if (
-      confirm(
-        "Are you sure you want to reset all statistics? This cannot be undone."
-      )
-    ) {
-      // Get current data to preserve important settings
-      // IMPORTANT: Preserves annualSalary, advanced blocking options, and extension state
-      browser.storage.local
-        .get(null)
-        .then((allData) => {
-          const now = Date.now();
-          const today = new Date().toDateString();
-          
-          // Preserve important settings
-          const preservedData = {
-            annualSalary: allData.annualSalary,
-            xFeedBlockerEnabled: allData.xFeedBlockerEnabled !== false,
-            blockNotifications: allData.blockNotifications || false,
-            blockMessages: allData.blockMessages || false,
-            blockExplore: allData.blockExplore || false,
-            blockPost: allData.blockPost || false,
-          };
-
-          // Reset statistics
-          return browser.storage.local.set({
-            ...preservedData,
-            dailyStats: {},
-            weeklyStats: {},
-            monthlyStats: {},
-            yearlyStats: {},
-            allTimeStats: {
-              timeSaved: 0,
-              timeWasted: 0,
-              moneySaved: 0,
-              moneyLost: 0,
-            },
-            totalTimeSaved: 0,
-            totalTimeWasted: 0,
-            enabledAt: preservedData.xFeedBlockerEnabled ? now : null,
-            disabledAt: !preservedData.xFeedBlockerEnabled ? now : null,
-            lastResetDate: today,
-          });
-        })
-        .then(() => {
-          alert("✅ Statistics reset successfully!");
-          updateStats();
-        })
-        .catch((error) => {
-          console.error("Reset statistics error:", error);
-          alert("❌ Error resetting statistics. Please try again.");
-        });
-    }
   });
 
   // Update stats with adaptive frequency for performance
