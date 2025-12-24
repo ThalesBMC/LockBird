@@ -52,7 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Advanced options
   const expandButton = document.getElementById("expandButton");
-  const advancedHeader = expandButton ? expandButton.closest(".advanced-header") : null;
+  const advancedHeader = expandButton
+    ? expandButton.closest(".advanced-header")
+    : null;
   const advancedContent = document.getElementById("advancedContent");
   const toggleNotifications = document.getElementById("toggleNotifications");
   const toggleMessages = document.getElementById("toggleMessages");
