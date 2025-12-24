@@ -7,6 +7,14 @@
   let isEnabled = true;
   let styleElement = null;
   let messageInjected = false;
+  
+  // Advanced blocking options (optional, no tracking)
+  let advancedOptions = {
+    blockNotifications: false,
+    blockMessages: false,
+    blockExplore: false,
+    blockPost: false,
+  };
 
   // Message displayed instead of the feed
   const blockedMessage = `
@@ -20,8 +28,18 @@
   // Load saved state from browser storage
   function loadState() {
     if (typeof browser !== 'undefined' && browser.storage) {
-      browser.storage.local.get('xFeedBlockerEnabled').then((result) => {
+      browser.storage.local.get([
+        'xFeedBlockerEnabled',
+        'blockNotifications',
+        'blockMessages',
+        'blockExplore',
+        'blockPost'
+      ]).then((result) => {
         isEnabled = result.xFeedBlockerEnabled !== false;
+        advancedOptions.blockNotifications = result.blockNotifications || false;
+        advancedOptions.blockMessages = result.blockMessages || false;
+        advancedOptions.blockExplore = result.blockExplore || false;
+        advancedOptions.blockPost = result.blockPost || false;
         applyState();
       }).catch(() => {
         isEnabled = true;
@@ -41,6 +59,10 @@
         isEnabled = message.enabled;
         applyState();
       }
+      if (message.action === 'updateAdvancedOptions') {
+        Object.assign(advancedOptions, message.options);
+        applyAdvancedBlocking();
+      }
       if (message.action === 'getState') {
         return Promise.resolve({ enabled: isEnabled });
       }
@@ -52,6 +74,83 @@
       hideTimeline();
     } else {
       showTimeline();
+    }
+    applyAdvancedBlocking();
+  }
+
+  function applyAdvancedBlocking() {
+    // Remove existing advanced blocking styles
+    const existingAdvancedStyle = document.getElementById('x-feed-blocker-advanced-style');
+    if (existingAdvancedStyle) {
+      existingAdvancedStyle.remove();
+    }
+
+    // Build CSS for advanced blocking options
+    let advancedCSS = '';
+
+    if (advancedOptions.blockNotifications) {
+      advancedCSS += `
+        /* Block notifications page */
+        a[href="/notifications"],
+        a[aria-label*="Notifications"] {
+          pointer-events: none;
+          opacity: 0.3;
+        }
+        [data-testid="primaryColumn"] div[aria-label*="Timeline: Notifications"] {
+          display: none !important;
+        }
+      `;
+    }
+
+    if (advancedOptions.blockMessages) {
+      advancedCSS += `
+        /* Block messages page */
+        a[href="/messages"],
+        a[aria-label*="Direct Messages"] {
+          pointer-events: none;
+          opacity: 0.3;
+        }
+        [data-testid="DMDrawer"],
+        [data-testid="primaryColumn"] div[aria-label*="Timeline: Messages"] {
+          display: none !important;
+        }
+      `;
+    }
+
+    if (advancedOptions.blockExplore) {
+      advancedCSS += `
+        /* Block explore/search page */
+        a[href="/explore"],
+        a[href*="/search"],
+        a[aria-label*="Search and explore"] {
+          pointer-events: none;
+          opacity: 0.3;
+        }
+        [data-testid="primaryColumn"] div[aria-label*="Search"] {
+          display: none !important;
+        }
+      `;
+    }
+
+    if (advancedOptions.blockPost) {
+      advancedCSS += `
+        /* Block post/tweet button and composer */
+        a[href="/compose/post"],
+        a[data-testid="SideNav_NewTweet_Button"],
+        [data-testid="toolBar"],
+        [data-testid="tweetButtonInline"],
+        div[aria-label*="Post text"] {
+          display: none !important;
+        }
+      `;
+    }
+
+    // Inject advanced blocking CSS if any options are enabled
+    if (advancedCSS) {
+      const advancedStyleElement = document.createElement('style');
+      advancedStyleElement.id = 'x-feed-blocker-advanced-style';
+      advancedStyleElement.textContent = advancedCSS;
+      document.head.appendChild(advancedStyleElement);
     }
   }
 

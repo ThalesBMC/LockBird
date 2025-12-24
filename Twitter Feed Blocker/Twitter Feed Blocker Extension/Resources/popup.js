@@ -50,6 +50,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const setupCancel = document.getElementById("setupCancel");
   const setupSave = document.getElementById("setupSave");
 
+  // Advanced options
+  const expandButton = document.getElementById("expandButton");
+  const advancedContent = document.getElementById("advancedContent");
+  const toggleNotifications = document.getElementById("toggleNotifications");
+  const toggleMessages = document.getElementById("toggleMessages");
+  const toggleExplore = document.getElementById("toggleExplore");
+  const togglePost = document.getElementById("togglePost");
+
   let currentPhrase = null;
   let moneyUpdateInterval = null;
 
@@ -58,6 +66,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Setup money tracking interval
   moneyUpdateInterval = setInterval(updateMoneyDisplay, 1000);
+
+  // Advanced options expand/collapse
+  expandButton.addEventListener("click", function () {
+    advancedContent.classList.toggle("expanded");
+    expandButton.classList.toggle("expanded");
+  });
+
+  // Advanced toggles
+  toggleNotifications.addEventListener("click", function () {
+    toggleAdvancedOption("blockNotifications", toggleNotifications);
+  });
+
+  toggleMessages.addEventListener("click", function () {
+    toggleAdvancedOption("blockMessages", toggleMessages);
+  });
+
+  toggleExplore.addEventListener("click", function () {
+    toggleAdvancedOption("blockExplore", toggleExplore);
+  });
+
+  togglePost.addEventListener("click", function () {
+    toggleAdvancedOption("blockPost", togglePost);
+  });
 
   // Toggle click handler
   toggle.addEventListener("click", function () {
@@ -146,6 +177,10 @@ document.addEventListener("DOMContentLoaded", function () {
         "disabledAt",
         "enabledAt",
         "totalTimeSaved",
+        "blockNotifications",
+        "blockMessages",
+        "blockExplore",
+        "blockPost",
       ])
       .then((result) => {
         const isEnabled = result.xFeedBlockerEnabled !== false;
@@ -154,6 +189,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (result.annualSalary) {
           salaryInput.value = result.annualSalary;
         }
+
+        // Load advanced options state
+        if (result.blockNotifications) toggleNotifications.classList.add("active");
+        if (result.blockMessages) toggleMessages.classList.add("active");
+        if (result.blockExplore) toggleExplore.classList.add("active");
+        if (result.blockPost) togglePost.classList.add("active");
 
         // Initialize enabledAt if extension is enabled but no timestamp exists
         if (isEnabled && !result.enabledAt) {
@@ -360,6 +401,37 @@ document.addEventListener("DOMContentLoaded", function () {
       statusBadge.classList.add("inactive");
       statusText.textContent = "Inactive";
     }
+  }
+
+  function toggleAdvancedOption(optionKey, toggleElement) {
+    const isCurrentlyActive = toggleElement.classList.contains("active");
+    const newState = !isCurrentlyActive;
+
+    // Update UI
+    if (newState) {
+      toggleElement.classList.add("active");
+    } else {
+      toggleElement.classList.remove("active");
+    }
+
+    // Save to storage
+    browser.storage.local.set({ [optionKey]: newState }).then(() => {
+      // Send message to content script
+      browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
+        if (tabs[0]) {
+          browser.tabs
+            .sendMessage(tabs[0].id, {
+              action: "updateAdvancedOptions",
+              options: {
+                [optionKey]: newState,
+              },
+            })
+            .catch(() => {
+              // Tab might not have content script loaded
+            });
+        }
+      });
+    });
   }
 
   // Cleanup interval on unload

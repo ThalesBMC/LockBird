@@ -13,7 +13,7 @@
 
     body {
       width: 340px;
-      min-height: 400px;
+      min-height: 500px;
       padding: 20px;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -191,6 +191,115 @@
       height: 1px;
       background: rgba(255, 255, 255, 0.1);
       margin: 16px 0;
+    }
+
+    .advanced-section {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .advanced-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .advanced-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .expand-button {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 12px;
+      cursor: pointer;
+      padding: 4px;
+      transition: transform 0.3s ease;
+    }
+
+    .expand-button.expanded {
+      transform: rotate(180deg);
+    }
+
+    .advanced-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .advanced-content.expanded {
+      max-height: 300px;
+      margin-top: 16px;
+    }
+
+    .advanced-description {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 12px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .option-item:last-child {
+      border-bottom: none;
+    }
+
+    .option-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .option-icon {
+      font-size: 18px;
+    }
+
+    .option-label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .mini-toggle {
+      width: 44px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .mini-toggle.active {
+      background: #ef4444;
+    }
+
+    .mini-toggle-knob {
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.3s ease;
+    }
+
+    .mini-toggle.active .mini-toggle-knob {
+      transform: translateX(20px);
     }
 
     .stats-button {
@@ -422,6 +531,58 @@
     <div class="money-amount" id="moneyAmount">$0.00</div>
     <div class="money-subtitle" id="moneySubtitle">Keep it up! 🎯</div>
     <a href="#" class="setup-link" id="setupLink">⚙️ Set your annual salary</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="advanced-section">
+    <div class="advanced-header">
+      <span class="advanced-title">⚙️ Advanced Options</span>
+      <button class="expand-button" id="expandButton">▼</button>
+    </div>
+    <div class="advanced-content" id="advancedContent">
+      <p class="advanced-description">Block additional distractions (optional)</p>
+      
+      <div class="option-item">
+        <div class="option-info">
+          <span class="option-icon">🔔</span>
+          <span class="option-label">Notifications</span>
+        </div>
+        <div class="mini-toggle" id="toggleNotifications">
+          <div class="mini-toggle-knob"></div>
+        </div>
+      </div>
+
+      <div class="option-item">
+        <div class="option-info">
+          <span class="option-icon">💬</span>
+          <span class="option-label">Messages</span>
+        </div>
+        <div class="mini-toggle" id="toggleMessages">
+          <div class="mini-toggle-knob"></div>
+        </div>
+      </div>
+
+      <div class="option-item">
+        <div class="option-info">
+          <span class="option-icon">🔍</span>
+          <span class="option-label">Explore/Search</span>
+        </div>
+        <div class="mini-toggle" id="toggleExplore">
+          <div class="mini-toggle-knob"></div>
+        </div>
+      </div>
+
+      <div class="option-item">
+        <div class="option-info">
+          <span class="option-icon">✍️</span>
+          <span class="option-label">Post Button</span>
+        </div>
+        <div class="mini-toggle" id="togglePost">
+          <div class="mini-toggle-knob"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="divider"></div>
