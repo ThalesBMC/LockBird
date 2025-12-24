@@ -26,6 +26,8 @@
 		FF953E5B2EFC2FDF005C35C4 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = FF953E5C2EFC2FDF005C35C4 /* icons */; };
 		FF953E5D2EFC2FDF005C35C4 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = FF953E5E2EFC2FDF005C35C4 /* popup.html */; };
 		FF953E5F2EFC2FDF005C35C4 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = FF953E602EFC2FDF005C35C4 /* popup.js */; };
+		FF953E612EFC2FDF005C35C4 /* statistics.html in Resources */ = {isa = PBXBuildFile; fileRef = FF953E622EFC2FDF005C35C4 /* statistics.html */; };
+		FF953E632EFC2FDF005C35C4 /* statistics.js in Resources */ = {isa = PBXBuildFile; fileRef = FF953E642EFC2FDF005C35C4 /* statistics.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,8 @@
 		FF953E5C2EFC2FDF005C35C4 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = icons; sourceTree = "<group>"; };
 		FF953E5E2EFC2FDF005C35C4 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
 		FF953E602EFC2FDF005C35C4 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
+		FF953E622EFC2FDF005C35C4 /* statistics.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = statistics.html; sourceTree = "<group>"; };
+		FF953E642EFC2FDF005C35C4 /* statistics.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = statistics.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +217,8 @@
 				FF953E572EFC2FDF005C35C4 /* content.js */,
 				FF953E5E2EFC2FDF005C35C4 /* popup.html */,
 				FF953E602EFC2FDF005C35C4 /* popup.js */,
+				FF953E622EFC2FDF005C35C4 /* statistics.html */,
+				FF953E642EFC2FDF005C35C4 /* statistics.js */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -386,6 +392,8 @@
 				FF953E582EFC2FDF005C35C4 /* styles.css in Resources */,
 				FF953E5D2EFC2FDF005C35C4 /* popup.html in Resources */,
 				FF953E5F2EFC2FDF005C35C4 /* popup.js in Resources */,
+				FF953E612EFC2FDF005C35C4 /* statistics.html in Resources */,
+				FF953E632EFC2FDF005C35C4 /* statistics.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

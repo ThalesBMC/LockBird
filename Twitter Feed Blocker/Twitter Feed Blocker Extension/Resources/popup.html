@@ -12,8 +12,8 @@
     }
 
     body {
-      width: 320px;
-      min-height: 200px;
+      width: 340px;
+      min-height: 400px;
       padding: 20px;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -134,17 +134,88 @@
       transform: translateX(22px);
     }
 
+    /* Money Stats */
+    .money-card {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(245, 158, 11, 0.15) 100%);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(251, 191, 36, 0.3);
+    }
+
+    .money-card.losing {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.15) 100%);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .money-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 8px;
+    }
+
+    .money-amount {
+      font-size: 32px;
+      font-weight: 700;
+      color: #fbbf24;
+      margin-bottom: 4px;
+    }
+
+    .money-card.losing .money-amount {
+      color: #ef4444;
+    }
+
+    .money-subtitle {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .setup-link {
+      color: #60a5fa;
+      text-decoration: none;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 8px;
+    }
+
+    .setup-link:hover {
+      text-decoration: underline;
+    }
+
     .divider {
       height: 1px;
       background: rgba(255, 255, 255, 0.1);
       margin: 16px 0;
     }
 
+    .stats-button {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      background: rgba(96, 165, 250, 0.15);
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      border-radius: 8px;
+      color: #60a5fa;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s;
+      margin-bottom: 16px;
+    }
+
+    .stats-button:hover {
+      background: rgba(96, 165, 250, 0.25);
+      border-color: rgba(96, 165, 250, 0.5);
+    }
+
     .footer {
       text-align: center;
       font-size: 11px;
       color: rgba(255, 255, 255, 0.4);
-      margin-top: 16px;
     }
 
     /* Modal */
@@ -159,6 +230,7 @@
       z-index: 1000;
       align-items: center;
       justify-content: center;
+      padding: 20px;
     }
 
     .modal-overlay.show {
@@ -169,7 +241,8 @@
       background: #1a1a2e;
       border-radius: 16px;
       padding: 24px;
-      width: 280px;
+      width: 100%;
+      max-width: 320px;
       max-height: 90vh;
       overflow-y: auto;
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -188,27 +261,18 @@
     }
 
     .modal-title {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
       text-align: center;
-      margin-bottom: 12px;
+      margin-bottom: 20px;
       color: #ef4444;
     }
 
-    .modal-message {
-      font-size: 14px;
-      line-height: 1.7;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 20px;
-      min-height: 60px;
-    }
-
     .modal-challenge {
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.6);
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
       text-align: center;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
 
     .modal-phrase {
@@ -217,10 +281,11 @@
       text-align: center;
       color: #fbbf24;
       background: rgba(251, 191, 36, 0.1);
-      padding: 8px 12px;
+      padding: 12px;
       border-radius: 8px;
       margin-bottom: 16px;
       border: 1px solid rgba(251, 191, 36, 0.2);
+      line-height: 1.6;
     }
 
     .modal-input {
@@ -295,6 +360,36 @@
     .modal-error.show {
       display: block;
     }
+
+    /* Setup Modal */
+    .setup-input {
+      width: 100%;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 12px;
+      font-family: inherit;
+      text-align: center;
+    }
+
+    .setup-input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .setup-input:focus {
+      outline: none;
+      border-color: #fbbf24;
+    }
+
+    .setup-hint {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      text-align: center;
+      margin-bottom: 16px;
+    }
   </style>
 </head>
 <body>
@@ -320,22 +415,31 @@
     </div>
   </div>
 
-  <div class="divider"></div>
-
-  <div class="footer">
-    Stay focused. Your time is valuable. 💎
+  <!-- Money Stats -->
+  <div class="money-card" id="moneyCard">
+    <div class="money-title" id="moneyTitle">💰 MONEY SAVED TODAY</div>
+    <div class="money-amount" id="moneyAmount">$0.00</div>
+    <div class="money-subtitle" id="moneySubtitle">Keep it up! 🎯</div>
+    <a href="#" class="setup-link" id="setupLink">⚙️ Set your annual salary</a>
   </div>
 
-  <!-- Confirmation modal -->
+  <div class="divider"></div>
+
+  <a href="statistics.html" class="stats-button" id="statsButton">
+    📊 View Statistics
+  </a>
+
+  <div class="footer">
+    Your time is your most valuable asset. 💎
+  </div>
+
+  <!-- Disable Confirmation Modal -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
       <div class="modal-icon">⚠️</div>
       <div class="modal-title">Are you sure?</div>
-      <div class="modal-message" id="modalMessage">
-        Every minute is worth money. You're losing focus and wasting your attention on infinite distractions.
-      </div>
       <div class="modal-challenge">Type the phrase below to disable:</div>
-      <div class="modal-phrase" id="modalPhrase">I accept wasting my time</div>
+      <div class="modal-phrase" id="modalPhrase"></div>
       <input 
         type="text" 
         class="modal-input" 
@@ -347,6 +451,30 @@
       <div class="modal-buttons">
         <button class="modal-button cancel" id="modalCancel">Cancel</button>
         <button class="modal-button confirm" id="modalConfirm">Disable</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Setup Salary Modal -->
+  <div class="modal-overlay" id="setupModal">
+    <div class="modal">
+      <div class="modal-icon">💰</div>
+      <div class="modal-title">Set Your Annual Salary</div>
+      <div class="modal-message">
+        Enter your annual salary in USD to see how much money you're saving (or losing) by using X.
+      </div>
+      <input 
+        type="number" 
+        class="setup-input" 
+        id="salaryInput" 
+        placeholder="$100,000"
+        min="0"
+        step="1000"
+      >
+      <div class="setup-hint">This is stored locally and never shared</div>
+      <div class="modal-buttons">
+        <button class="modal-button cancel" id="setupCancel">Cancel</button>
+        <button class="modal-button confirm" id="setupSave" style="background: #22c55e;">Save</button>
       </div>
     </div>
   </div>

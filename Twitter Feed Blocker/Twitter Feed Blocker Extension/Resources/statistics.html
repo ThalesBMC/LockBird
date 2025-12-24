@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistics - X Feed Blocker</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 500px;
+      min-height: 600px;
+      padding: 24px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #fff;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      font-size: 32px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .back-button {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .back-button:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .period-selector {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px;
+      border-radius: 12px;
+    }
+
+    .period-button {
+      flex: 1;
+      padding: 10px;
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .period-button.active {
+      background: rgba(96, 165, 250, 0.2);
+      color: #60a5fa;
+    }
+
+    .period-button:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-card.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .stat-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .stat-value.money {
+      color: #22c55e;
+    }
+
+    .stat-value.lost {
+      color: #ef4444;
+    }
+
+    .stat-subtitle {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .chart-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 16px;
+    }
+
+    .chart-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .bar-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .bar-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bar-label {
+      width: 80px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .bar-container {
+      flex: 1;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #22c55e, #16a34a);
+      border-radius: 12px;
+      transition: width 0.5s ease;
+    }
+
+    .bar-value {
+      width: 60px;
+      text-align: right;
+      font-size: 13px;
+      font-weight: 600;
+      color: #22c55e;
+    }
+
+    .insight-card {
+      background: linear-gradient(135deg, rgba(96, 165, 250, 0.15), rgba(59, 130, 246, 0.15));
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+    }
+
+    .insight-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .insight-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .insight-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .reset-button {
+      width: 100%;
+      padding: 12px;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 8px;
+      color: #ef4444;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 16px;
+    }
+
+    .reset-button:hover {
+      background: rgba(239, 68, 68, 0.25);
+      border-color: rgba(239, 68, 68, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-left">
+      <div class="logo">📊</div>
+      <div class="title">Your Statistics</div>
+    </div>
+    <button class="back-button" onclick="window.close()">← Back</button>
+  </div>
+
+  <div class="period-selector">
+    <button class="period-button active" data-period="today">Today</button>
+    <button class="period-button" data-period="week">Week</button>
+    <button class="period-button" data-period="month">Month</button>
+    <button class="period-button" data-period="year">Year</button>
+    <button class="period-button" data-period="all">All Time</button>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon">💰</div>
+      <div class="stat-label">Money Saved</div>
+      <div class="stat-value money" id="moneySaved">$0.00</div>
+      <div class="stat-subtitle" id="timeSaved">0h 0m</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">💸</div>
+      <div class="stat-label">Money Lost</div>
+      <div class="stat-value lost" id="moneyLost">$0.00</div>
+      <div class="stat-subtitle" id="timeWasted">0h 0m</div>
+    </div>
+
+    <div class="stat-card full-width">
+      <div class="stat-icon">🎯</div>
+      <div class="stat-label">Net Impact</div>
+      <div class="stat-value" id="netImpact">$0.00</div>
+      <div class="stat-subtitle" id="netSubtitle">Keep going!</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Daily Breakdown (Last 7 Days)</div>
+    <div class="bar-chart" id="weekChart">
+      <!-- Will be populated by JS -->
+    </div>
+  </div>
+
+  <div class="insight-card">
+    <div class="insight-icon">💡</div>
+    <div class="insight-title" id="insightTitle">Great job!</div>
+    <div class="insight-text" id="insightText">Loading insights...</div>
+  </div>
+
+  <button class="reset-button" id="resetButton">🔄 Reset All Statistics</button>
+
+  <script src="statistics.js"></script>
+</body>
+</html>
+
