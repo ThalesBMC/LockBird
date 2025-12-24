@@ -191,7 +191,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Load advanced options state
-        if (result.blockNotifications) toggleNotifications.classList.add("active");
+        if (result.blockNotifications)
+          toggleNotifications.classList.add("active");
         if (result.blockMessages) toggleMessages.classList.add("active");
         if (result.blockExplore) toggleExplore.classList.add("active");
         if (result.blockPost) togglePost.classList.add("active");
