@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Advanced options
   const expandButton = document.getElementById("expandButton");
+  const advancedHeader = expandButton ? expandButton.closest(".advanced-header") : null;
   const advancedContent = document.getElementById("advancedContent");
   const toggleNotifications = document.getElementById("toggleNotifications");
   const toggleMessages = document.getElementById("toggleMessages");
@@ -77,11 +78,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }, 1000);
 
-  // Advanced options expand/collapse
-  expandButton.addEventListener("click", function () {
-    advancedContent.classList.toggle("expanded");
-    expandButton.classList.toggle("expanded");
-  });
+  // Advanced options expand/collapse - make entire header clickable
+  if (advancedHeader) {
+    advancedHeader.addEventListener("click", function () {
+      if (advancedContent && expandButton) {
+        advancedContent.classList.toggle("expanded");
+        expandButton.classList.toggle("expanded");
+      }
+    });
+  }
 
   // Advanced toggles
   toggleNotifications.addEventListener("click", function () {
