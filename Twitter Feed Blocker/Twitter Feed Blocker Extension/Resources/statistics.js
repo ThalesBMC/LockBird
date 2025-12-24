@@ -33,28 +33,33 @@ document.addEventListener("DOMContentLoaded", function () {
         "Are you sure you want to reset all statistics? This cannot be undone."
       )
     ) {
-      browser.storage.local
-        .set({
-          dailyStats: {},
-          weeklyStats: {},
-          monthlyStats: {},
-          yearlyStats: {},
-          allTimeStats: {
-            timeSaved: 0,
-            timeWasted: 0,
-            moneySaved: 0,
-            moneyLost: 0,
-          },
-          totalTimeSaved: 0,
-          totalTimeWasted: 0,
-          enabledAt: null,
-          disabledAt: null,
-          lastResetDate: new Date().toDateString(),
-        })
-        .then(() => {
-          alert("Statistics reset successfully!");
-          updateStats();
-        });
+      // Get current data to preserve important settings
+      // IMPORTANT: Preserves annualSalary, advanced blocking options, and extension state
+      browser.storage.local.get(null).then((allData) => {
+        browser.storage.local
+          .set({
+            ...allData, // Preserve everything (salary, advanced options, etc)
+            dailyStats: {},
+            weeklyStats: {},
+            monthlyStats: {},
+            yearlyStats: {},
+            allTimeStats: {
+              timeSaved: 0,
+              timeWasted: 0,
+              moneySaved: 0,
+              moneyLost: 0,
+            },
+            totalTimeSaved: 0,
+            totalTimeWasted: 0,
+            enabledAt: allData.xFeedBlockerEnabled ? Date.now() : null,
+            disabledAt: !allData.xFeedBlockerEnabled ? Date.now() : null,
+            lastResetDate: new Date().toDateString(),
+          })
+          .then(() => {
+            alert("Statistics reset successfully!");
+            updateStats();
+          });
+      });
     }
   });
 
@@ -149,14 +154,18 @@ document.addEventListener("DOMContentLoaded", function () {
         };
       }
 
-      // Reset daily counters
-      browser.storage.local.set({
-        totalTimeSaved: 0,
-        totalTimeWasted: 0,
-        enabledAt: result.xFeedBlockerEnabled ? Date.now() : null,
-        disabledAt: !result.xFeedBlockerEnabled ? Date.now() : null,
-        lastResetDate: today,
-        dailyStats: dailyStats,
+      // Reset ONLY daily counters, preserve all other data
+      // IMPORTANT: Using spread operator to preserve annualSalary, advanced options, etc.
+      browser.storage.local.get(null).then((allData) => {
+        browser.storage.local.set({
+          ...allData, // Preserve everything (salary, advanced options, etc)
+          totalTimeSaved: 0,
+          totalTimeWasted: 0,
+          enabledAt: result.xFeedBlockerEnabled ? Date.now() : null,
+          disabledAt: !result.xFeedBlockerEnabled ? Date.now() : null,
+          lastResetDate: today,
+          dailyStats: dailyStats,
+        });
       });
     }
   }
