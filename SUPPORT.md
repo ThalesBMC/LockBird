@@ -71,7 +71,7 @@ No. All data is stored locally on your device. We don't collect, track, or share
 Still need help? Reach out to us:
 
 - **Email**: thalesbrederodes@gmail.com
-- **GitHub Issues**: https://github.com/thalesbrederodes/blocker-twitter-safari/issues
+- **GitHub Issues**: [GitHub repository](https://github.com/ThalesBMC/x-blocker-safari/issues)
 
 We typically respond within 24-48 hours.
 
@@ -84,7 +84,7 @@ We love hearing from our users! If you have:
 - Bug reports
 - General feedback
 
-Please open an issue on our [GitHub repository](https://github.com/thalesbrederodes/blocker-twitter-safari/issues) or send us an email.
+Please open an issue on our [GitHub repository](https://github.com/ThalesBMC/x-blocker-safari/issues) or send us an email.
 
 ---
 
