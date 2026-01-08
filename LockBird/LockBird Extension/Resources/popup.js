@@ -275,6 +275,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Format salary input with commas as user types
+  salaryInput.addEventListener("input", function (e) {
+    // Get only digits from input
+    const digits = e.target.value.replace(/[^0-9]/g, "");
+    // Format with commas
+    if (digits) {
+      e.target.value = parseInt(digits, 10).toLocaleString();
+    }
+  });
+
   setupSave.addEventListener("click", function () {
     // Remove commas, dots, spaces and other non-numeric characters, then parse
     const cleanedValue = salaryInput.value.replace(/[^0-9]/g, "");
@@ -286,8 +296,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (currentSalary) {
           currentSalary.textContent = `$${salary.toLocaleString()}`;
         }
-        // Update input to show clean number
-        salaryInput.value = salary;
+        // Update input to show formatted number
+        salaryInput.value = salary.toLocaleString();
         updateMoneyDisplay();
       });
     }
@@ -311,7 +321,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateUI(isEnabled);
 
         if (result.annualSalary) {
-          salaryInput.value = result.annualSalary;
+          salaryInput.value = result.annualSalary.toLocaleString();
           // Update settings display
           if (currentSalary) {
             currentSalary.textContent = `$${result.annualSalary.toLocaleString()}`;
