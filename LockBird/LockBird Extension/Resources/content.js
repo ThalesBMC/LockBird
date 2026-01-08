@@ -1,4 +1,4 @@
-// X Feed Blocker - Content Script
+// LockBird: Feed Blocker - Content Script
 // Runs on ALL pages for time tracking
 // Blocks feed only on Twitter/X
 
@@ -86,7 +86,7 @@
         }
       })
       .catch((error) => {
-        console.error("🛡️ X Feed Blocker: Heartbeat error", error);
+        console.error("🛡️ LockBird: Heartbeat error", error);
       });
   }
 
@@ -132,7 +132,7 @@
       dailyStats: dailyStats,
     });
 
-    console.log("🛡️ X Feed Blocker: Daily stats reset for", today);
+    console.log("🛡️ LockBird: Daily stats reset for", today);
   }
 
   function startHeartbeat() {
@@ -220,7 +220,7 @@
     <div class="feed-blocked-message">
       <div class="emoji">🛡️</div>
       <h2>Feed Blocked</h2>
-      <p>The X home feed is hidden to boost your productivity. You can still use search, notifications, messages, and view profiles.</p>
+      <p>The home feed is hidden to boost your productivity. You can still use search, notifications, messages, and view profiles.</p>
     </div>
   `;
 

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "X Feed Blocker",
+  "name": "LockBird: Feed Blocker",
   "version": "1.0",
-  "description": "Hides the X.com feed to boost productivity",
+  "description": "Hides Twitter/X home feed to boost productivity",
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

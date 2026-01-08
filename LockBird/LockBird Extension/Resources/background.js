@@ -1,4 +1,4 @@
-// Background script for X Feed Blocker
+// Background script for LockBird: Feed Blocker
 // Fallback heartbeat when no tabs are open
 // Main heartbeat is done by content.js (more reliable in Safari)
 
@@ -16,7 +16,7 @@
   initialize();
 
   function initialize() {
-    console.log("🛡️ X Feed Blocker Background: Starting...");
+    console.log("🛡️ LockBird Background: Starting...");
 
     // Start fallback heartbeat
     startHeartbeat();
@@ -24,7 +24,7 @@
     // Listen for messages from popup/content scripts
     browser.runtime.onMessage.addListener(handleMessage);
 
-    console.log("🛡️ X Feed Blocker Background: Initialized");
+    console.log("🛡️ LockBird Background: Initialized");
   }
 
   function startHeartbeat() {
@@ -132,7 +132,7 @@
         }
       })
       .catch((error) => {
-        console.error("🛡️ X Feed Blocker Background: Heartbeat error", error);
+        console.error("🛡️ LockBird Background: Heartbeat error", error);
       });
   }
 
@@ -178,6 +178,6 @@
       dailyStats: dailyStats,
     });
 
-    console.log("🛡️ X Feed Blocker Background: Daily stats reset for", today);
+    console.log("🛡️ LockBird Background: Daily stats reset for", today);
   }
 })();

@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Twitter Feed Blocker
+//  LockBird
 //
 //  Created by Thales Brederodes Montarroyos Candido on 24/12/25.
 //

@@ -1,13 +1,13 @@
 //
-//  Twitter_Feed_BlockerUITestsLaunchTests.swift
-//  Twitter Feed BlockerUITests
+//  LockBirdUITestsLaunchTests.swift
+//  LockBirdUITests
 //
 //  Created by Thales Brederodes Montarroyos Candido on 24/12/25.
 //
 
 import XCTest
 
-final class Twitter_Feed_BlockerUITestsLaunchTests: XCTestCase {
+final class LockBirdUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

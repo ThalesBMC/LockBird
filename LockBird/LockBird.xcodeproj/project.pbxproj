@@ -15,10 +15,10 @@
 		FF953E192EFC2FDE005C35C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF953E182EFC2FDE005C35C4 /* ViewController.swift */; };
 		FF953E1C2EFC2FDE005C35C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF953E1A2EFC2FDE005C35C4 /* Main.storyboard */; };
 		FF953E1E2EFC2FDF005C35C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF953E1D2EFC2FDF005C35C4 /* Assets.xcassets */; };
-		FF953E2B2EFC2FDF005C35C4 /* Twitter_Feed_BlockerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF953E2A2EFC2FDF005C35C4 /* Twitter_Feed_BlockerTests.swift */; };
-		FF953E352EFC2FDF005C35C4 /* Twitter_Feed_BlockerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF953E342EFC2FDF005C35C4 /* Twitter_Feed_BlockerUITests.swift */; };
-		FF953E372EFC2FDF005C35C4 /* Twitter_Feed_BlockerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF953E362EFC2FDF005C35C4 /* Twitter_Feed_BlockerUITestsLaunchTests.swift */; };
-		FF953E3D2EFC2FDF005C35C4 /* Twitter Feed Blocker Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FF953E3C2EFC2FDF005C35C4 /* Twitter Feed Blocker Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FF953E2B2EFC2FDF005C35C4 /* LockBirdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF953E2A2EFC2FDF005C35C4 /* LockBirdTests.swift */; };
+		FF953E352EFC2FDF005C35C4 /* LockBirdUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF953E342EFC2FDF005C35C4 /* LockBirdUITests.swift */; };
+		FF953E372EFC2FDF005C35C4 /* LockBirdUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF953E362EFC2FDF005C35C4 /* LockBirdUITestsLaunchTests.swift */; };
+		FF953E3D2EFC2FDF005C35C4 /* LockBird Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FF953E3C2EFC2FDF005C35C4 /* LockBird Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FF953E422EFC2FDF005C35C4 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF953E412EFC2FDF005C35C4 /* SafariWebExtensionHandler.swift */; };
 		FF953E582EFC2FDF005C35C4 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = FF953E552EFC2FDF005C35C4 /* styles.css */; };
 		FF953E592EFC2FDF005C35C4 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = FF953E562EFC2FDF005C35C4 /* manifest.json */; };
@@ -37,21 +37,21 @@
 			containerPortal = FF953E012EFC2FDE005C35C4 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = FF953E082EFC2FDE005C35C4;
-			remoteInfo = "Twitter Feed Blocker";
+			remoteInfo = "LockBird";
 		};
 		FF953E312EFC2FDF005C35C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF953E012EFC2FDE005C35C4 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = FF953E082EFC2FDE005C35C4;
-			remoteInfo = "Twitter Feed Blocker";
+			remoteInfo = "LockBird";
 		};
 		FF953E3E2EFC2FDF005C35C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF953E012EFC2FDE005C35C4 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = FF953E3B2EFC2FDF005C35C4;
-			remoteInfo = "Twitter Feed Blocker Extension";
+			remoteInfo = "LockBird Extension";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -62,7 +62,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				FF953E3D2EFC2FDF005C35C4 /* Twitter Feed Blocker Extension.appex in Embed Foundation Extensions */,
+				FF953E3D2EFC2FDF005C35C4 /* LockBird Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,7 +70,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FF953E092EFC2FDE005C35C4 /* Twitter Feed Blocker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Twitter Feed Blocker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF953E092EFC2FDE005C35C4 /* LockBird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LockBird.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF953E0C2EFC2FDE005C35C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF953E102EFC2FDE005C35C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
 		FF953E122EFC2FDE005C35C4 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -80,17 +80,17 @@
 		FF953E1B2EFC2FDE005C35C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FF953E1D2EFC2FDF005C35C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF953E1F2EFC2FDF005C35C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FF953E202EFC2FDF005C35C4 /* Twitter_Feed_Blocker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Twitter_Feed_Blocker.entitlements; sourceTree = "<group>"; };
-		FF953E212EFC2FDF005C35C4 /* Twitter Feed Blocker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Twitter Feed Blocker.entitlements"; sourceTree = "<group>"; };
-		FF953E262EFC2FDF005C35C4 /* Twitter Feed BlockerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Twitter Feed BlockerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FF953E2A2EFC2FDF005C35C4 /* Twitter_Feed_BlockerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Twitter_Feed_BlockerTests.swift; sourceTree = "<group>"; };
-		FF953E302EFC2FDF005C35C4 /* Twitter Feed BlockerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Twitter Feed BlockerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FF953E342EFC2FDF005C35C4 /* Twitter_Feed_BlockerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Twitter_Feed_BlockerUITests.swift; sourceTree = "<group>"; };
-		FF953E362EFC2FDF005C35C4 /* Twitter_Feed_BlockerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Twitter_Feed_BlockerUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		FF953E3C2EFC2FDF005C35C4 /* Twitter Feed Blocker Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Twitter Feed Blocker Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF953E202EFC2FDF005C35C4 /* LockBird.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LockBird.entitlements; sourceTree = "<group>"; };
+		FF953E212EFC2FDF005C35C4 /* LockBird.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "LockBird.entitlements"; sourceTree = "<group>"; };
+		FF953E262EFC2FDF005C35C4 /* LockBirdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LockBirdTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF953E2A2EFC2FDF005C35C4 /* LockBirdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockBirdTests.swift; sourceTree = "<group>"; };
+		FF953E302EFC2FDF005C35C4 /* LockBirdUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LockBirdUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF953E342EFC2FDF005C35C4 /* LockBirdUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockBirdUITests.swift; sourceTree = "<group>"; };
+		FF953E362EFC2FDF005C35C4 /* LockBirdUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockBirdUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FF953E3C2EFC2FDF005C35C4 /* LockBird Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "LockBird Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF953E412EFC2FDF005C35C4 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
 		FF953E432EFC2FDF005C35C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FF953E442EFC2FDF005C35C4 /* Twitter_Feed_Blocker_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Twitter_Feed_Blocker_Extension.entitlements; sourceTree = "<group>"; };
+		FF953E442EFC2FDF005C35C4 /* LockBird_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LockBird_Extension.entitlements; sourceTree = "<group>"; };
 		FF953E552EFC2FDF005C35C4 /* styles.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
 		FF953E562EFC2FDF005C35C4 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
 		FF953E572EFC2FDF005C35C4 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
@@ -137,10 +137,10 @@
 		FF953E002EFC2FDE005C35C4 = {
 			isa = PBXGroup;
 			children = (
-				FF953E0B2EFC2FDE005C35C4 /* Twitter Feed Blocker */,
-				FF953E292EFC2FDF005C35C4 /* Twitter Feed BlockerTests */,
-				FF953E332EFC2FDF005C35C4 /* Twitter Feed BlockerUITests */,
-				FF953E402EFC2FDF005C35C4 /* Twitter Feed Blocker Extension */,
+				FF953E0B2EFC2FDE005C35C4 /* LockBird */,
+				FF953E292EFC2FDF005C35C4 /* LockBirdTests */,
+				FF953E332EFC2FDF005C35C4 /* LockBirdUITests */,
+				FF953E402EFC2FDF005C35C4 /* LockBird Extension */,
 				FF953E0A2EFC2FDE005C35C4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -148,15 +148,15 @@
 		FF953E0A2EFC2FDE005C35C4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FF953E092EFC2FDE005C35C4 /* Twitter Feed Blocker.app */,
-				FF953E262EFC2FDF005C35C4 /* Twitter Feed BlockerTests.xctest */,
-				FF953E302EFC2FDF005C35C4 /* Twitter Feed BlockerUITests.xctest */,
-				FF953E3C2EFC2FDF005C35C4 /* Twitter Feed Blocker Extension.appex */,
+				FF953E092EFC2FDE005C35C4 /* LockBird.app */,
+				FF953E262EFC2FDF005C35C4 /* LockBirdTests.xctest */,
+				FF953E302EFC2FDF005C35C4 /* LockBirdUITests.xctest */,
+				FF953E3C2EFC2FDF005C35C4 /* LockBird Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FF953E0B2EFC2FDE005C35C4 /* Twitter Feed Blocker */ = {
+		FF953E0B2EFC2FDE005C35C4 /* LockBird */ = {
 			isa = PBXGroup;
 			children = (
 				FF953E0C2EFC2FDE005C35C4 /* AppDelegate.swift */,
@@ -164,11 +164,11 @@
 				FF953E1A2EFC2FDE005C35C4 /* Main.storyboard */,
 				FF953E1D2EFC2FDF005C35C4 /* Assets.xcassets */,
 				FF953E1F2EFC2FDF005C35C4 /* Info.plist */,
-				FF953E202EFC2FDF005C35C4 /* Twitter_Feed_Blocker.entitlements */,
-				FF953E212EFC2FDF005C35C4 /* Twitter Feed Blocker.entitlements */,
+				FF953E202EFC2FDF005C35C4 /* LockBird.entitlements */,
+				FF953E212EFC2FDF005C35C4 /* LockBird.entitlements */,
 				FF953E0E2EFC2FDE005C35C4 /* Resources */,
 			);
-			path = "Twitter Feed Blocker";
+			path = "LockBird";
 			sourceTree = "<group>";
 		};
 		FF953E0E2EFC2FDE005C35C4 /* Resources */ = {
@@ -182,32 +182,32 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		FF953E292EFC2FDF005C35C4 /* Twitter Feed BlockerTests */ = {
+		FF953E292EFC2FDF005C35C4 /* LockBirdTests */ = {
 			isa = PBXGroup;
 			children = (
-				FF953E2A2EFC2FDF005C35C4 /* Twitter_Feed_BlockerTests.swift */,
+				FF953E2A2EFC2FDF005C35C4 /* LockBirdTests.swift */,
 			);
-			path = "Twitter Feed BlockerTests";
+			path = "LockBirdTests";
 			sourceTree = "<group>";
 		};
-		FF953E332EFC2FDF005C35C4 /* Twitter Feed BlockerUITests */ = {
+		FF953E332EFC2FDF005C35C4 /* LockBirdUITests */ = {
 			isa = PBXGroup;
 			children = (
-				FF953E342EFC2FDF005C35C4 /* Twitter_Feed_BlockerUITests.swift */,
-				FF953E362EFC2FDF005C35C4 /* Twitter_Feed_BlockerUITestsLaunchTests.swift */,
+				FF953E342EFC2FDF005C35C4 /* LockBirdUITests.swift */,
+				FF953E362EFC2FDF005C35C4 /* LockBirdUITestsLaunchTests.swift */,
 			);
-			path = "Twitter Feed BlockerUITests";
+			path = "LockBirdUITests";
 			sourceTree = "<group>";
 		};
-		FF953E402EFC2FDF005C35C4 /* Twitter Feed Blocker Extension */ = {
+		FF953E402EFC2FDF005C35C4 /* LockBird Extension */ = {
 			isa = PBXGroup;
 			children = (
 				FF953E542EFC2FDF005C35C4 /* Resources */,
 				FF953E412EFC2FDF005C35C4 /* SafariWebExtensionHandler.swift */,
 				FF953E432EFC2FDF005C35C4 /* Info.plist */,
-				FF953E442EFC2FDF005C35C4 /* Twitter_Feed_Blocker_Extension.entitlements */,
+				FF953E442EFC2FDF005C35C4 /* LockBird_Extension.entitlements */,
 			);
-			path = "Twitter Feed Blocker Extension";
+			path = "LockBird Extension";
 			sourceTree = "<group>";
 		};
 		FF953E542EFC2FDF005C35C4 /* Resources */ = {
@@ -229,9 +229,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FF953E082EFC2FDE005C35C4 /* Twitter Feed Blocker */ = {
+		FF953E082EFC2FDE005C35C4 /* LockBird */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FF953E4B2EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "Twitter Feed Blocker" */;
+			buildConfigurationList = FF953E4B2EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "LockBird" */;
 			buildPhases = (
 				FF953E052EFC2FDE005C35C4 /* Sources */,
 				FF953E062EFC2FDE005C35C4 /* Frameworks */,
@@ -243,16 +243,16 @@
 			dependencies = (
 				FF953E3F2EFC2FDF005C35C4 /* PBXTargetDependency */,
 			);
-			name = "Twitter Feed Blocker";
+			name = "LockBird";
 			packageProductDependencies = (
 			);
-			productName = "Twitter Feed Blocker";
-			productReference = FF953E092EFC2FDE005C35C4 /* Twitter Feed Blocker.app */;
+			productName = "LockBird";
+			productReference = FF953E092EFC2FDE005C35C4 /* LockBird.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FF953E252EFC2FDF005C35C4 /* Twitter Feed BlockerTests */ = {
+		FF953E252EFC2FDF005C35C4 /* LockBirdTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FF953E4E2EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "Twitter Feed BlockerTests" */;
+			buildConfigurationList = FF953E4E2EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "LockBirdTests" */;
 			buildPhases = (
 				FF953E222EFC2FDF005C35C4 /* Sources */,
 				FF953E232EFC2FDF005C35C4 /* Frameworks */,
@@ -263,16 +263,16 @@
 			dependencies = (
 				FF953E282EFC2FDF005C35C4 /* PBXTargetDependency */,
 			);
-			name = "Twitter Feed BlockerTests";
+			name = "LockBirdTests";
 			packageProductDependencies = (
 			);
-			productName = "Twitter Feed BlockerTests";
-			productReference = FF953E262EFC2FDF005C35C4 /* Twitter Feed BlockerTests.xctest */;
+			productName = "LockBirdTests";
+			productReference = FF953E262EFC2FDF005C35C4 /* LockBirdTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		FF953E2F2EFC2FDF005C35C4 /* Twitter Feed BlockerUITests */ = {
+		FF953E2F2EFC2FDF005C35C4 /* LockBirdUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FF953E512EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "Twitter Feed BlockerUITests" */;
+			buildConfigurationList = FF953E512EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "LockBirdUITests" */;
 			buildPhases = (
 				FF953E2C2EFC2FDF005C35C4 /* Sources */,
 				FF953E2D2EFC2FDF005C35C4 /* Frameworks */,
@@ -283,16 +283,16 @@
 			dependencies = (
 				FF953E322EFC2FDF005C35C4 /* PBXTargetDependency */,
 			);
-			name = "Twitter Feed BlockerUITests";
+			name = "LockBirdUITests";
 			packageProductDependencies = (
 			);
-			productName = "Twitter Feed BlockerUITests";
-			productReference = FF953E302EFC2FDF005C35C4 /* Twitter Feed BlockerUITests.xctest */;
+			productName = "LockBirdUITests";
+			productReference = FF953E302EFC2FDF005C35C4 /* LockBirdUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		FF953E3B2EFC2FDF005C35C4 /* Twitter Feed Blocker Extension */ = {
+		FF953E3B2EFC2FDF005C35C4 /* LockBird Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FF953E472EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "Twitter Feed Blocker Extension" */;
+			buildConfigurationList = FF953E472EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "LockBird Extension" */;
 			buildPhases = (
 				FF953E382EFC2FDF005C35C4 /* Sources */,
 				FF953E392EFC2FDF005C35C4 /* Frameworks */,
@@ -302,11 +302,11 @@
 			);
 			dependencies = (
 			);
-			name = "Twitter Feed Blocker Extension";
+			name = "LockBird Extension";
 			packageProductDependencies = (
 			);
-			productName = "Twitter Feed Blocker Extension";
-			productReference = FF953E3C2EFC2FDF005C35C4 /* Twitter Feed Blocker Extension.appex */;
+			productName = "LockBird Extension";
+			productReference = FF953E3C2EFC2FDF005C35C4 /* LockBird Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -335,7 +335,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FF953E042EFC2FDE005C35C4 /* Build configuration list for PBXProject "Twitter Feed Blocker" */;
+			buildConfigurationList = FF953E042EFC2FDE005C35C4 /* Build configuration list for PBXProject "LockBird" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -349,10 +349,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FF953E082EFC2FDE005C35C4 /* Twitter Feed Blocker */,
-				FF953E252EFC2FDF005C35C4 /* Twitter Feed BlockerTests */,
-				FF953E2F2EFC2FDF005C35C4 /* Twitter Feed BlockerUITests */,
-				FF953E3B2EFC2FDF005C35C4 /* Twitter Feed Blocker Extension */,
+				FF953E082EFC2FDE005C35C4 /* LockBird */,
+				FF953E252EFC2FDF005C35C4 /* LockBirdTests */,
+				FF953E2F2EFC2FDF005C35C4 /* LockBirdUITests */,
+				FF953E3B2EFC2FDF005C35C4 /* LockBird Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -417,7 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF953E2B2EFC2FDF005C35C4 /* Twitter_Feed_BlockerTests.swift in Sources */,
+				FF953E2B2EFC2FDF005C35C4 /* LockBirdTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,8 +425,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF953E352EFC2FDF005C35C4 /* Twitter_Feed_BlockerUITests.swift in Sources */,
-				FF953E372EFC2FDF005C35C4 /* Twitter_Feed_BlockerUITestsLaunchTests.swift in Sources */,
+				FF953E352EFC2FDF005C35C4 /* LockBirdUITests.swift in Sources */,
+				FF953E372EFC2FDF005C35C4 /* LockBirdUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,17 +443,17 @@
 /* Begin PBXTargetDependency section */
 		FF953E282EFC2FDF005C35C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FF953E082EFC2FDE005C35C4 /* Twitter Feed Blocker */;
+			target = FF953E082EFC2FDE005C35C4 /* LockBird */;
 			targetProxy = FF953E272EFC2FDF005C35C4 /* PBXContainerItemProxy */;
 		};
 		FF953E322EFC2FDF005C35C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FF953E082EFC2FDE005C35C4 /* Twitter Feed Blocker */;
+			target = FF953E082EFC2FDE005C35C4 /* LockBird */;
 			targetProxy = FF953E312EFC2FDF005C35C4 /* PBXContainerItemProxy */;
 		};
 		FF953E3F2EFC2FDF005C35C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FF953E3B2EFC2FDF005C35C4 /* Twitter Feed Blocker Extension */;
+			target = FF953E3B2EFC2FDF005C35C4 /* LockBird Extension */;
 			targetProxy = FF953E3E2EFC2FDF005C35C4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -599,15 +599,15 @@
 		FF953E482EFC2FDF005C35C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Twitter Feed Blocker Extension/Twitter_Feed_Blocker_Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "LockBird Extension/LockBird_Extension.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7QX6PLCF2C;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Twitter Feed Blocker Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "X Feed Blocker Extension";
+				INFOPLIST_FILE = "LockBird Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "LockBird Extension";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -620,7 +620,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.Twitter-Feed-Blocker.Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.LockBird.Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -631,15 +631,15 @@
 		FF953E492EFC2FDF005C35C4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Twitter Feed Blocker Extension/Twitter_Feed_Blocker_Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "LockBird Extension/LockBird_Extension.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7QX6PLCF2C;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Twitter Feed Blocker Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "X Feed Blocker Extension";
+				INFOPLIST_FILE = "LockBird Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "LockBird Extension";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -652,7 +652,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.Twitter-Feed-Blocker.Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.LockBird.Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -666,7 +666,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = "Twitter Feed Blocker/Twitter Feed Blocker.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "LockBird/LockBird.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -674,8 +674,8 @@
 				DEVELOPMENT_TEAM = 7QX6PLCF2C;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Twitter Feed Blocker/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "X Feed Blocker";
+				INFOPLIST_FILE = "LockBird/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "LockBird: Feed Blocker";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
@@ -692,7 +692,7 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.Twitter-Feed-Blocker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.LockBird";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -705,7 +705,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = "Twitter Feed Blocker/Twitter Feed Blocker.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "LockBird/LockBird.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -713,8 +713,8 @@
 				DEVELOPMENT_TEAM = 7QX6PLCF2C;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Twitter Feed Blocker/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "X Feed Blocker";
+				INFOPLIST_FILE = "LockBird/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "LockBird: Feed Blocker";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
@@ -731,7 +731,7 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.Twitter-Feed-Blocker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.LockBird";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -748,11 +748,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.Twitter-Feed-BlockerTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.LockBirdTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twitter Feed Blocker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Twitter Feed Blocker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LockBird.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LockBird";
 			};
 			name = Debug;
 		};
@@ -766,11 +766,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.Twitter-Feed-BlockerTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.LockBirdTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twitter Feed Blocker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Twitter Feed Blocker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LockBird.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LockBird";
 			};
 			name = Release;
 		};
@@ -782,11 +782,11 @@
 				DEVELOPMENT_TEAM = 7QX6PLCF2C;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.Twitter-Feed-BlockerUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.LockBirdUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Twitter Feed Blocker";
+				TEST_TARGET_NAME = "LockBird";
 			};
 			name = Debug;
 		};
@@ -798,18 +798,18 @@
 				DEVELOPMENT_TEAM = 7QX6PLCF2C;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.Twitter-Feed-BlockerUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thales.LockBirdUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Twitter Feed Blocker";
+				TEST_TARGET_NAME = "LockBird";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FF953E042EFC2FDE005C35C4 /* Build configuration list for PBXProject "Twitter Feed Blocker" */ = {
+		FF953E042EFC2FDE005C35C4 /* Build configuration list for PBXProject "LockBird" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF953E452EFC2FDF005C35C4 /* Debug */,
@@ -818,7 +818,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FF953E472EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "Twitter Feed Blocker Extension" */ = {
+		FF953E472EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "LockBird Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF953E482EFC2FDF005C35C4 /* Debug */,
@@ -827,7 +827,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FF953E4B2EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "Twitter Feed Blocker" */ = {
+		FF953E4B2EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "LockBird" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF953E4C2EFC2FDF005C35C4 /* Debug */,
@@ -836,7 +836,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FF953E4E2EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "Twitter Feed BlockerTests" */ = {
+		FF953E4E2EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "LockBirdTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF953E4F2EFC2FDF005C35C4 /* Debug */,
@@ -845,7 +845,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FF953E512EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "Twitter Feed BlockerUITests" */ = {
+		FF953E512EFC2FDF005C35C4 /* Build configuration list for PBXNativeTarget "LockBirdUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF953E522EFC2FDF005C35C4 /* Debug */,

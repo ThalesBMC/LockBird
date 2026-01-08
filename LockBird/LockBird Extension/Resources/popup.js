@@ -1,4 +1,4 @@
-// Popup script for X Feed Blocker with Money Tracking
+// Popup script for LockBird: Feed Blocker with Money Tracking
 
 // Longer, more impactful motivational phrases
 const motivationalPhrases = [
@@ -276,7 +276,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   setupSave.addEventListener("click", function () {
-    const salary = parseInt(salaryInput.value);
+    // Remove commas, dots, spaces and other non-numeric characters, then parse
+    const cleanedValue = salaryInput.value.replace(/[^0-9]/g, "");
+    const salary = parseInt(cleanedValue);
     if (salary && salary > 0) {
       browser.storage.local.set({ annualSalary: salary }).then(() => {
         hideSetupModal();
@@ -284,6 +286,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (currentSalary) {
           currentSalary.textContent = `$${salary.toLocaleString()}`;
         }
+        // Update input to show clean number
+        salaryInput.value = salary;
         updateMoneyDisplay();
       });
     }

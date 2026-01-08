@@ -1,6 +1,6 @@
 //
 //  SafariWebExtensionHandler.swift
-//  Twitter Feed Blocker Extension
+//  LockBird Extension
 //
 //  Created by Thales Brederodes Montarroyos Candido on 24/12/25.
 //

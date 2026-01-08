@@ -1,8 +1,8 @@
 # Support
 
-## X Feed Blocker - Help & Support
+## LockBird: Feed Blocker - Help & Support
 
-Need help with X Feed Blocker? You're in the right place.
+Need help with LockBird: Feed Blocker? You're in the right place.
 
 ---
 
@@ -10,9 +10,9 @@ Need help with X Feed Blocker? You're in the right place.
 
 ### How do I enable the extension?
 
-1. Open the X Feed Blocker app
+1. Open the LockBird: Feed Blocker app
 2. Click "Open Safari Extension Preferences"
-3. Check the box next to "X Feed Blocker" to enable it
+3. Check the box next to "LockBird: Feed Blocker" to enable it
 4. Visit twitter.com or x.com - the feed will be automatically hidden
 
 ### The feed is still showing. What should I do?
@@ -24,7 +24,7 @@ Need help with X Feed Blocker? You're in the right place.
 
 ### How do I see my statistics?
 
-Click the X Feed Blocker icon in Safari's toolbar to see:
+Click the LockBird icon in Safari's toolbar to see:
 - Time saved today
 - Total time saved
 - Daily statistics
@@ -48,7 +48,7 @@ No. All data is stored locally on your device. We don't collect, track, or share
 ### Extension not appearing in Safari
 
 1. Open Safari → Settings → Extensions
-2. Look for "X Feed Blocker" in the list
+2. Look for "LockBird: Feed Blocker" in the list
 3. If not visible, try restarting your Mac
 4. Make sure you're running macOS 10.14 or later
 
@@ -61,7 +61,7 @@ No. All data is stored locally on your device. We don't collect, track, or share
 ### Extension stopped working after Safari update
 
 1. Go to Safari → Settings → Extensions
-2. Disable and re-enable X Feed Blocker
+2. Disable and re-enable LockBird: Feed Blocker
 3. If the issue persists, reinstall the app from the Mac App Store
 
 ---
@@ -93,9 +93,4 @@ Please open an issue on our [GitHub repository](https://github.com/ThalesBMC/x-b
 - **Current Version**: 1.0
 - **Requires**: macOS 10.14+, Safari 16.1+
 
-Thank you for using X Feed Blocker! 🚫📱
-
-
-
-
-
+Thank you for using LockBird: Feed Blocker! 🐦🔒

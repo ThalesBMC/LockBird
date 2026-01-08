@@ -2,15 +2,16 @@
 
 **Last updated: January 2, 2026**
 
-## X Feed Blocker Privacy Policy
+## LockBird: Feed Blocker Privacy Policy
 
-X Feed Blocker ("the App") is committed to protecting your privacy. This Privacy Policy explains our practices regarding data collection and usage.
+LockBird: Feed Blocker ("the App") is committed to protecting your privacy. This Privacy Policy explains our practices regarding data collection and usage.
 
 ## Data Collection
 
 **We do not collect any personal data.**
 
 The App does not:
+
 - Collect personal information
 - Track your browsing activity
 - Send any data to external servers
@@ -21,6 +22,7 @@ The App does not:
 ## Data Storage
 
 All data is stored **locally on your device** only:
+
 - Extension enabled/disabled state
 - Time tracking statistics
 - Daily usage statistics
@@ -30,6 +32,7 @@ This data never leaves your device and is not accessible to us or any third part
 ## Permissions
 
 The App requires the following permissions:
+
 - **Storage**: To save your preferences and statistics locally on your device
 - **Access to twitter.com and x.com**: To hide the feed on these websites
 
@@ -61,8 +64,3 @@ If you have any questions about this Privacy Policy, please contact us:
 🔒 **No ads**
 🔒 **Everything stored locally**
 🔒 **Your privacy is 100% protected**
-
-
-
-
-
