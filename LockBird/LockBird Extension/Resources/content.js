@@ -213,6 +213,12 @@
     blockMessages: false,
     blockExplore: false,
     blockPost: false,
+    blockHome: false,
+    blockTrending: false,
+    blockGrok: false,
+    blockCommunities: false,
+    blockLists: false,
+    blockBookmarks: false,
   };
 
   // Message displayed instead of the feed
@@ -234,6 +240,12 @@
           "blockMessages",
           "blockExplore",
           "blockPost",
+          "blockHome",
+          "blockTrending",
+          "blockGrok",
+          "blockCommunities",
+          "blockLists",
+          "blockBookmarks",
         ])
         .then((result) => {
           isEnabled = result.xFeedBlockerEnabled !== false;
@@ -242,6 +254,12 @@
           advancedOptions.blockMessages = result.blockMessages || false;
           advancedOptions.blockExplore = result.blockExplore || false;
           advancedOptions.blockPost = result.blockPost || false;
+          advancedOptions.blockHome = result.blockHome || false;
+          advancedOptions.blockTrending = result.blockTrending || false;
+          advancedOptions.blockGrok = result.blockGrok || false;
+          advancedOptions.blockCommunities = result.blockCommunities || false;
+          advancedOptions.blockLists = result.blockLists || false;
+          advancedOptions.blockBookmarks = result.blockBookmarks || false;
           applyState();
         })
         .catch(() => {
@@ -343,6 +361,75 @@
       `;
     }
 
+    if (advancedOptions.blockHome) {
+      advancedCSS += `
+        a[href="/home"],
+        a[aria-label="Home"],
+        a[data-testid="AppTabBar_Home_Link"] {
+          pointer-events: none;
+          opacity: 0.3;
+        }
+      `;
+    }
+
+    if (advancedOptions.blockTrending) {
+      advancedCSS += `
+        [data-testid="sidebarColumn"] [aria-label="Timeline: Trending now"],
+        [data-testid="trend"],
+        div[aria-label*="Timeline: Trending"],
+        section[aria-labelledby*="accessible-list"] div[data-testid="trend"],
+        [data-testid="sidebarColumn"] section:has([data-testid="trend"]),
+        aside[aria-label*="What"] {
+          display: none !important;
+        }
+      `;
+    }
+
+    if (advancedOptions.blockGrok) {
+      advancedCSS += `
+        a[href="/i/grok"],
+        a[aria-label="Grok"],
+        [data-testid="grokDrawer"],
+        a[href*="grok"] {
+          pointer-events: none;
+          opacity: 0.3;
+        }
+        [data-testid="grokDrawer"] {
+          display: none !important;
+        }
+      `;
+    }
+
+    if (advancedOptions.blockCommunities) {
+      advancedCSS += `
+        a[href*="/communities"],
+        a[aria-label="Communities"] {
+          pointer-events: none;
+          opacity: 0.3;
+        }
+      `;
+    }
+
+    if (advancedOptions.blockLists) {
+      advancedCSS += `
+        a[href*="/lists"],
+        a[aria-label="Lists"] {
+          pointer-events: none;
+          opacity: 0.3;
+        }
+      `;
+    }
+
+    if (advancedOptions.blockBookmarks) {
+      advancedCSS += `
+        a[href="/i/bookmarks"],
+        a[aria-label="Bookmarks"] {
+          pointer-events: none;
+          opacity: 0.3;
+        }
+      `;
+    }
+
     if (advancedCSS) {
       const advancedStyleElement = document.createElement("style");
       advancedStyleElement.id = "x-feed-blocker-advanced-style";
@@ -368,7 +455,9 @@
       return;
     }
 
-    if (!styleElement) {
+    // Ensure style element exists and is in the document
+    if (!styleElement || !document.head.contains(styleElement)) {
+      if (styleElement) styleElement.remove();
       styleElement = document.createElement("style");
       styleElement.id = "x-feed-blocker-style";
       styleElement.textContent = `
@@ -381,26 +470,39 @@
         [data-testid="primaryColumn"] > div > div:first-child {
           display: block !important;
         }
+        /* Also hide "For you" and "Following" tabs content */
+        [data-testid="primaryColumn"] div[aria-label*="Timeline"] > div {
+          display: none !important;
+        }
       `;
       document.head.appendChild(styleElement);
     }
 
-    if (!messageInjected) {
-      const primaryColumn = document.querySelector(
-        '[data-testid="primaryColumn"]'
-      );
-      if (
-        primaryColumn &&
-        !primaryColumn.querySelector(".feed-blocked-message")
-      ) {
-        const section = primaryColumn.querySelector('section[role="region"]');
-        if (section) {
+    // Try to inject message
+    const primaryColumn = document.querySelector('[data-testid="primaryColumn"]');
+    if (!primaryColumn) return;
+
+    const existingMessage = primaryColumn.querySelector(".feed-blocked-message");
+    
+    if (!existingMessage) {
+      const section = primaryColumn.querySelector('section[role="region"]');
+      if (section && section.parentElement) {
+        const messageDiv = document.createElement("div");
+        messageDiv.innerHTML = blockedMessage;
+        section.parentElement.insertBefore(messageDiv, section);
+        messageInjected = true;
+      } else {
+        // Fallback: try to insert in primaryColumn directly if section not found
+        const firstChild = primaryColumn.querySelector('div > div');
+        if (firstChild) {
           const messageDiv = document.createElement("div");
           messageDiv.innerHTML = blockedMessage;
-          section.parentElement.insertBefore(messageDiv, section);
+          firstChild.parentElement.insertBefore(messageDiv, firstChild.nextSibling);
           messageInjected = true;
         }
       }
+    } else {
+      messageInjected = true;
     }
   }
 
@@ -444,4 +546,108 @@
       applyState();
     }
   }).observe(document, { subtree: true, childList: true });
+
+  // Intercept History API for more reliable navigation detection
+  const originalPushState = history.pushState;
+  const originalReplaceState = history.replaceState;
+
+  history.pushState = function (...args) {
+    originalPushState.apply(this, args);
+    handleNavigation();
+  };
+
+  history.replaceState = function (...args) {
+    originalReplaceState.apply(this, args);
+    handleNavigation();
+  };
+
+  window.addEventListener("popstate", handleNavigation);
+
+  function handleNavigation() {
+    messageInjected = false;
+    // Small delay to let Twitter render the new page
+    setTimeout(() => {
+      applyState();
+    }, 100);
+    // Double check after content loads
+    setTimeout(() => {
+      applyState();
+    }, 500);
+  }
+
+  // Periodic check to ensure blocking stays active (catches edge cases)
+  setInterval(() => {
+    if (isEnabled && isHomePage()) {
+      const primaryColumn = document.querySelector('[data-testid="primaryColumn"]');
+      const existingMessage = primaryColumn?.querySelector(".feed-blocked-message");
+      const styleExists = document.head.contains(styleElement);
+      
+      // Re-apply if message is missing or style was removed
+      if (!existingMessage || !styleExists) {
+        messageInjected = false;
+        hideTimeline();
+      }
+    }
+  }, 500); // Check every 500ms for faster response
+
+  // Intercept clicks on Home button, logo, and navigation links
+  document.addEventListener("click", function (e) {
+    // Check for home navigation elements
+    const homeTarget = e.target.closest(
+      'a[href="/home"], ' +
+      'a[data-testid="AppTabBar_Home_Link"], ' +
+      'a[aria-label="Home"], ' +
+      'a[aria-label="X"], ' +  // Twitter/X logo
+      'h1 a[href="/home"], ' + // Header logo link
+      '[data-testid="twitterCloseIcon"]'
+    );
+    
+    if (homeTarget && isEnabled) {
+      // Delay to let navigation complete, then apply blocking
+      setTimeout(() => {
+        messageInjected = false;
+        applyState();
+      }, 150);
+      setTimeout(() => {
+        applyState();
+      }, 400);
+      setTimeout(() => {
+        applyState();
+      }, 800);
+    }
+  }, true);
+
+  // Also watch for navigation via keyboard (Enter on focused link)
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      const activeElement = document.activeElement;
+      if (activeElement && activeElement.matches && 
+          activeElement.matches('a[href="/home"], a[data-testid="AppTabBar_Home_Link"], a[aria-label="Home"]')) {
+        if (isEnabled) {
+          setTimeout(() => {
+            messageInjected = false;
+            applyState();
+          }, 200);
+        }
+      }
+    }
+  }, true);
+
+  // Focus/visibility change - recheck when user returns to tab
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible" && isEnabled && isHomePage()) {
+      setTimeout(() => {
+        applyState();
+      }, 100);
+    }
+  });
+
+  // Window focus - recheck blocking
+  window.addEventListener("focus", function () {
+    if (isEnabled && isHomePage()) {
+      setTimeout(() => {
+        applyState();
+      }, 100);
+    }
+  });
 })();

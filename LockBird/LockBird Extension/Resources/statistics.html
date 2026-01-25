@@ -12,20 +12,24 @@
       }
 
       body {
-        width: 500px;
-        min-height: 600px;
-        padding: 24px;
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-          "Segoe UI", Roboto, sans-serif;
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        color: #fff;
+        width: 360px;
+        min-height: 420px;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+          "Segoe UI", Roboto, Helvetica, sans-serif;
+        background-color: #000000;
+        color: #e7e9ea;
+        font-size: 14px;
+        line-height: 1.4;
       }
 
+      /* Header */
       .header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 24px;
+        padding: 12px 16px;
+        border-bottom: 1px solid #2f3336;
       }
 
       .header-left {
@@ -35,197 +39,268 @@
       }
 
       .logo {
-        width: 32px;
-        height: 32px;
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
       }
 
       .title {
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 700;
+        color: #e7e9ea;
+        letter-spacing: -0.3px;
       }
 
       .back-button {
-        background: rgba(255, 255, 255, 0.1);
-        border: none;
-        color: #fff;
-        padding: 8px 16px;
-        border-radius: 8px;
-        font-size: 14px;
+        background: transparent;
+        border: 1px solid #536471;
+        color: #e7e9ea;
+        padding: 6px 12px;
+        border-radius: 9999px;
+        font-size: 12px;
+        font-weight: 700;
         cursor: pointer;
         transition: all 0.2s;
         text-decoration: none;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
       }
 
       .back-button:hover {
-        background: rgba(255, 255, 255, 0.15);
+        background: rgba(239, 243, 244, 0.1);
+        border-color: #e7e9ea;
       }
 
+      /* Content */
+      .content {
+        padding: 12px 16px;
+      }
+
+      /* Period Selector */
       .period-selector {
         display: flex;
-        gap: 8px;
-        margin-bottom: 24px;
-        background: rgba(255, 255, 255, 0.05);
-        padding: 4px;
-        border-radius: 12px;
+        gap: 2px;
+        margin-bottom: 16px;
+        background: #16181c;
+        padding: 3px;
+        border-radius: 9999px;
       }
 
       .period-button {
         flex: 1;
-        padding: 10px;
+        padding: 7px 4px;
         background: transparent;
         border: none;
-        color: rgba(255, 255, 255, 0.6);
-        font-size: 13px;
+        color: #71767b;
+        font-size: 11px;
         font-weight: 600;
-        border-radius: 8px;
+        border-radius: 9999px;
         cursor: pointer;
         transition: all 0.2s;
       }
 
       .period-button.active {
-        background: rgba(96, 165, 250, 0.2);
-        color: #60a5fa;
+        background: #e7e9ea;
+        color: #0f1419;
       }
 
       .period-button:hover:not(.active) {
-        background: rgba(255, 255, 255, 0.05);
-        color: rgba(255, 255, 255, 0.8);
+        background: rgba(239, 243, 244, 0.1);
+        color: #e7e9ea;
       }
 
+      /* Stats Grid */
       .stats-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 16px;
-        margin-bottom: 24px;
+        gap: 10px;
+        margin-bottom: 16px;
       }
 
       .stat-card {
-        background: rgba(255, 255, 255, 0.1);
+        background: #16181c;
         border-radius: 12px;
-        padding: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 14px;
       }
 
       .stat-card.full-width {
         grid-column: 1 / -1;
       }
 
+      .stat-card.saved {
+        border-left: 3px solid #00ba7c;
+      }
+
+      .stat-card.lost {
+        border-left: 3px solid #f4212e;
+      }
+
+      .stat-card.net {
+        border-left: 3px solid #1d9bf0;
+      }
+
       .stat-icon {
-        font-size: 32px;
-        margin-bottom: 12px;
+        font-size: 20px;
+        margin-bottom: 8px;
       }
 
       .stat-label {
-        font-size: 12px;
+        font-size: 10px;
+        font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 1px;
-        color: rgba(255, 255, 255, 0.5);
-        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+        color: #71767b;
+        margin-bottom: 6px;
       }
 
       .stat-value {
-        font-size: 28px;
+        font-size: 24px;
         font-weight: 700;
-        color: #fff;
-        margin-bottom: 4px;
+        color: #e7e9ea;
+        margin-bottom: 2px;
+        letter-spacing: -0.5px;
       }
 
       .stat-value.money {
-        color: #22c55e;
+        color: #00ba7c;
       }
 
       .stat-value.lost {
-        color: #ef4444;
+        color: #f4212e;
+      }
+
+      .stat-value.net-positive {
+        color: #00ba7c;
+      }
+
+      .stat-value.net-negative {
+        color: #f4212e;
       }
 
       .stat-subtitle {
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.6);
+        font-size: 11px;
+        color: #71767b;
       }
 
+      /* Insight Card */
       .insight-card {
-        background: linear-gradient(
-          135deg,
-          rgba(96, 165, 250, 0.15),
-          rgba(59, 130, 246, 0.15)
-        );
+        background: #16181c;
         border-radius: 12px;
-        padding: 20px;
-        border: 1px solid rgba(96, 165, 250, 0.3);
+        padding: 14px;
+        border-left: 3px solid #ffd400;
       }
 
-      .insight-icon {
-        font-size: 24px;
-        margin-bottom: 12px;
-      }
-
-      .insight-title {
-        font-size: 16px;
-        font-weight: 600;
+      .insight-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
         margin-bottom: 8px;
       }
 
-      .insight-text {
-        font-size: 14px;
-        line-height: 1.6;
-        color: rgba(255, 255, 255, 0.8);
+      .insight-icon {
+        font-size: 16px;
       }
 
+      .insight-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: #e7e9ea;
+      }
+
+      .insight-text {
+        font-size: 12px;
+        line-height: 1.5;
+        color: #71767b;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 12px 16px;
+        font-size: 11px;
+        color: #536471;
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #3d4144;
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #536471;
+      }
     </style>
   </head>
   <body>
+    <!-- Header -->
     <div class="header">
       <div class="header-left">
         <img
           src="images/icon-header.png"
           alt="Logo"
           class="logo"
-          width="48"
-          height="48"
         />
-        <div class="title">Your Statistics</div>
+        <div class="title">Statistics</div>
       </div>
       <a href="popup.html" class="back-button">← Back</a>
     </div>
 
-    <div class="period-selector">
-      <button class="period-button active" data-period="today">Today</button>
-      <button class="period-button" data-period="week">Week</button>
-      <button class="period-button" data-period="month">Month</button>
-      <button class="period-button" data-period="year">Year</button>
-      <button class="period-button" data-period="all">All Time</button>
-    </div>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-icon">💰</div>
-        <div class="stat-label">Money Saved</div>
-        <div class="stat-value money" id="moneySaved">$0.00</div>
-        <div class="stat-subtitle" id="timeSaved">0h 0m</div>
+    <!-- Content -->
+    <div class="content">
+      <!-- Period Selector -->
+      <div class="period-selector">
+        <button class="period-button active" data-period="today">Today</button>
+        <button class="period-button" data-period="week">Week</button>
+        <button class="period-button" data-period="month">Month</button>
+        <button class="period-button" data-period="year">Year</button>
+        <button class="period-button" data-period="all">All</button>
       </div>
 
-      <div class="stat-card">
-        <div class="stat-icon">💸</div>
-        <div class="stat-label">Money Lost</div>
-        <div class="stat-value lost" id="moneyLost">$0.00</div>
-        <div class="stat-subtitle" id="timeWasted">0h 0m</div>
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card saved">
+          <div class="stat-icon">💰</div>
+          <div class="stat-label">Money Saved</div>
+          <div class="stat-value money" id="moneySaved">$0.00</div>
+          <div class="stat-subtitle" id="timeSaved">0h 0m productive</div>
+        </div>
+
+        <div class="stat-card lost">
+          <div class="stat-icon">💸</div>
+          <div class="stat-label">Money Lost</div>
+          <div class="stat-value lost" id="moneyLost">$0.00</div>
+          <div class="stat-subtitle" id="timeWasted">0h 0m wasted</div>
+        </div>
+
+        <div class="stat-card full-width net">
+          <div class="stat-icon">📊</div>
+          <div class="stat-label">Net Impact</div>
+          <div class="stat-value net-positive" id="netImpact">$0.00</div>
+          <div class="stat-subtitle" id="netSubtitle">Keep going!</div>
+        </div>
       </div>
 
-      <div class="stat-card full-width">
-        <div class="stat-icon">🎯</div>
-        <div class="stat-label">Net Impact</div>
-        <div class="stat-value" id="netImpact">$0.00</div>
-        <div class="stat-subtitle" id="netSubtitle">Keep going!</div>
+      <!-- Insight Card -->
+      <div class="insight-card">
+        <div class="insight-header">
+          <span class="insight-icon">💡</span>
+          <span class="insight-title" id="insightTitle">Insight</span>
+        </div>
+        <div class="insight-text" id="insightText">Loading your personalized insights...</div>
       </div>
     </div>
 
-    <div class="insight-card">
-      <div class="insight-icon">💡</div>
-      <div class="insight-title" id="insightTitle">Great job!</div>
-      <div class="insight-text" id="insightText">Loading insights...</div>
-    </div>
-
+  
     <script src="statistics.js"></script>
   </body>
 </html>

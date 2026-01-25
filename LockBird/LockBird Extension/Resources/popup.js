@@ -136,14 +136,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Advanced options
   const expandButton = document.getElementById("expandButton");
-  const advancedHeader = expandButton
-    ? expandButton.closest(".advanced-header")
-    : null;
+  const advancedHeader = document.getElementById("advancedHeader");
   const advancedContent = document.getElementById("advancedContent");
   const toggleNotifications = document.getElementById("toggleNotifications");
   const toggleMessages = document.getElementById("toggleMessages");
   const toggleExplore = document.getElementById("toggleExplore");
   const togglePost = document.getElementById("togglePost");
+  const toggleHome = document.getElementById("toggleHome");
+  const toggleTrending = document.getElementById("toggleTrending");
+  const toggleGrok = document.getElementById("toggleGrok");
+  const toggleCommunities = document.getElementById("toggleCommunities");
+  const toggleLists = document.getElementById("toggleLists");
+  const toggleBookmarks = document.getElementById("toggleBookmarks");
 
   let currentPhrase = null;
   let moneyUpdateInterval = null;
@@ -176,13 +180,22 @@ document.addEventListener("DOMContentLoaded", function () {
   if (advancedHeader) {
     advancedHeader.addEventListener("click", function () {
       if (advancedContent && expandButton) {
+        const isCurrentlyExpanded = advancedContent.classList.contains("expanded");
         advancedContent.classList.toggle("expanded");
         expandButton.classList.toggle("expanded");
+        
+        // If collapsing, reset scroll position to prevent white space bug
+        if (isCurrentlyExpanded) {
+          // Wait for collapse animation to start, then scroll to top
+          setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }, 50);
+        }
       }
     });
   }
 
-  // Advanced toggles
+  // Advanced toggles - direct toggle without confirmation
   toggleNotifications.addEventListener("click", function () {
     toggleAdvancedOption("blockNotifications", toggleNotifications);
   });
@@ -197,6 +210,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
   togglePost.addEventListener("click", function () {
     toggleAdvancedOption("blockPost", togglePost);
+  });
+
+  toggleHome.addEventListener("click", function () {
+    toggleAdvancedOption("blockHome", toggleHome);
+  });
+
+  toggleTrending.addEventListener("click", function () {
+    toggleAdvancedOption("blockTrending", toggleTrending);
+  });
+
+  toggleGrok.addEventListener("click", function () {
+    toggleAdvancedOption("blockGrok", toggleGrok);
+  });
+
+  toggleCommunities.addEventListener("click", function () {
+    toggleAdvancedOption("blockCommunities", toggleCommunities);
+  });
+
+  toggleLists.addEventListener("click", function () {
+    toggleAdvancedOption("blockLists", toggleLists);
+  });
+
+  toggleBookmarks.addEventListener("click", function () {
+    toggleAdvancedOption("blockBookmarks", toggleBookmarks);
   });
 
   // Toggle click handler
@@ -244,12 +281,43 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Prevent paste via keyboard shortcuts (Ctrl+V, Cmd+V)
+  modalInput.addEventListener("keydown", function (e) {
+    if ((e.ctrlKey || e.metaKey) && (e.key === "v" || e.key === "V")) {
+      e.preventDefault();
+      return false;
+    }
+    // Also prevent Ctrl+Shift+V
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === "v" || e.key === "V")) {
+      e.preventDefault();
+      return false;
+    }
+  });
+
+  // Prevent paste event
+  modalInput.addEventListener("paste", function (e) {
+    e.preventDefault();
+    return false;
+  });
+
+  // Prevent drop
+  modalInput.addEventListener("drop", function (e) {
+    e.preventDefault();
+    return false;
+  });
+
+  // Prevent context menu (right-click)
+  modalInput.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+    return false;
+  });
+
   modalConfirm.addEventListener("click", function () {
     const userInput = modalInput.value.trim().toLowerCase();
     const correctPhrase = currentPhrase.phrase.toLowerCase();
 
     if (userInput === correctPhrase) {
-      // Correct phrase - disable
+      // Correct phrase - disable blocking
       disableBlocking();
       hideDisableModal();
     } else {
@@ -315,6 +383,12 @@ document.addEventListener("DOMContentLoaded", function () {
         "blockMessages",
         "blockExplore",
         "blockPost",
+        "blockHome",
+        "blockTrending",
+        "blockGrok",
+        "blockCommunities",
+        "blockLists",
+        "blockBookmarks",
       ])
       .then((result) => {
         const isEnabled = result.xFeedBlockerEnabled !== false;
@@ -339,6 +413,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (result.blockMessages) toggleMessages.classList.add("active");
         if (result.blockExplore) toggleExplore.classList.add("active");
         if (result.blockPost) togglePost.classList.add("active");
+        if (result.blockHome) toggleHome.classList.add("active");
+        if (result.blockTrending) toggleTrending.classList.add("active");
+        if (result.blockGrok) toggleGrok.classList.add("active");
+        if (result.blockCommunities) toggleCommunities.classList.add("active");
+        if (result.blockLists) toggleLists.classList.add("active");
+        if (result.blockBookmarks) toggleBookmarks.classList.add("active");
 
         // Initialize enabledAt if extension is enabled but no timestamp exists
         // Wait for the set to complete before updating display
@@ -573,7 +653,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const moneySaved = hoursSaved * hourlyRate;
 
       moneyCard.classList.remove("losing");
-      moneyTitle.textContent = "💰 MONEY SAVED TODAY";
+      moneyTitle.textContent = "MONEY SAVED TODAY";
       moneyAmount.textContent = `$${moneySaved.toFixed(2)}`;
       moneySubtitle.textContent = `${formatTime(
         totalSavedMs
@@ -670,6 +750,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+
 
   // Cleanup interval on unload
   window.addEventListener("unload", function () {

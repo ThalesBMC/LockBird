@@ -13,429 +13,420 @@
 
       body {
         width: 340px;
-        min-height: 500px;
-        padding: 20px;
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-          "Segoe UI", Roboto, sans-serif;
-        background-color: #1a1a2e;
-        color: #fff;
+        min-height: 480px;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+          "Segoe UI", Roboto, Helvetica, sans-serif;
+        background-color: #000000;
+        color: #e7e9ea;
+        font-size: 15px;
+        line-height: 1.4;
       }
 
+      /* Header */
       .header {
         display: flex;
         align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        border-bottom: 1px solid #2f3336;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: center;
         gap: 12px;
-        margin-bottom: 20px;
       }
 
       .logo {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
       }
 
       .title {
         font-size: 18px;
         font-weight: 700;
-        letter-spacing: -0.5px;
+        color: #e7e9ea;
+        letter-spacing: -0.3px;
       }
 
-      .status-card {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 16px;
-        margin-bottom: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .status-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .status-label {
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.7);
-      }
-
-      .status-badge {
+      .status-pill {
         display: flex;
         align-items: center;
         gap: 6px;
-        background: rgba(34, 197, 94, 0.2);
-        color: #22c55e;
         padding: 6px 12px;
-        border-radius: 20px;
+        border-radius: 9999px;
         font-size: 13px;
         font-weight: 600;
       }
 
-      .status-badge.inactive {
-        background: rgba(239, 68, 68, 0.2);
-        color: #ef4444;
+      .status-pill.active {
+        background: rgba(0, 186, 124, 0.15);
+        color: #00ba7c;
       }
 
-      .pulse {
-        width: 8px;
-        height: 8px;
-        background: #22c55e;
+      .status-pill.inactive {
+        background: rgba(244, 33, 46, 0.15);
+        color: #f4212e;
+      }
+
+      .status-dot {
+        width: 6px;
+        height: 6px;
         border-radius: 50%;
-        animation: pulse 2s infinite;
+        background: currentColor;
       }
 
-      .status-badge.inactive .pulse {
-        background: #ef4444;
-        animation: none;
+      .status-pill.active .status-dot {
+        animation: pulse-green 2s infinite;
       }
 
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
-          transform: scale(1);
-        }
-        50% {
-          opacity: 0.5;
-          transform: scale(1.2);
-        }
+      @keyframes pulse-green {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
       }
 
-      .toggle-container {
+      /* Main Content */
+      .content {
+        padding: 16px 20px;
+      }
+
+      /* Main Toggle Card */
+      .main-toggle-card {
+        background: #16181c;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 16px;
+      }
+
+      .toggle-row {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-top: 12px;
       }
 
-      .toggle-label {
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.9);
+      .toggle-info h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: #e7e9ea;
+        margin-bottom: 4px;
       }
 
+      .toggle-info p {
+        font-size: 13px;
+        color: #71767b;
+      }
+
+      /* Toggle Switch - X style */
       .toggle {
         position: relative;
-        width: 48px;
-        height: 26px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 13px;
+        width: 44px;
+        height: 24px;
+        background: #3d4144;
+        border-radius: 9999px;
         cursor: pointer;
-        transition: background 0.3s;
+        transition: background 0.2s ease;
       }
 
       .toggle.active {
-        background: #22c55e;
+        background: #1d9bf0;
       }
 
       .toggle-knob {
         position: absolute;
-        top: 3px;
-        left: 3px;
+        top: 2px;
+        left: 2px;
         width: 20px;
         height: 20px;
-        background: #fff;
+        background: #ffffff;
         border-radius: 50%;
-        transition: transform 0.3s;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       }
 
       .toggle.active .toggle-knob {
-        transform: translateX(22px);
+        transform: translateX(20px);
       }
 
-      /* Money Stats */
+      /* Money Card */
       .money-card {
-        background: linear-gradient(
-          135deg,
-          rgba(251, 191, 36, 0.15) 0%,
-          rgba(245, 158, 11, 0.15) 100%
-        );
-        border-radius: 12px;
-        padding: 16px;
+        background: #16181c;
+        border-radius: 16px;
+        padding: 20px;
         margin-bottom: 16px;
-        border: 1px solid rgba(251, 191, 36, 0.3);
+        border-left: 3px solid #00ba7c;
       }
 
       .money-card.losing {
-        background: linear-gradient(
-          135deg,
-          rgba(239, 68, 68, 0.15) 0%,
-          rgba(220, 38, 38, 0.15) 100%
-        );
-        border-color: rgba(239, 68, 68, 0.3);
+        border-left-color: #f4212e;
       }
 
-      .money-title {
+      .money-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .money-icon {
+        font-size: 16px;
+      }
+
+      .money-label {
         font-size: 12px;
+        font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 1px;
-        color: rgba(255, 255, 255, 0.6);
-        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+        color: #71767b;
       }
 
       .money-amount {
-        font-size: 32px;
+        font-size: 36px;
         font-weight: 700;
-        color: #fbbf24;
+        color: #00ba7c;
+        letter-spacing: -1px;
         margin-bottom: 4px;
       }
 
       .money-card.losing .money-amount {
-        color: #ef4444;
+        color: #f4212e;
       }
 
       .money-subtitle {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.5);
+        font-size: 13px;
+        color: #71767b;
       }
 
       .setup-link {
-        color: #60a5fa;
-        text-decoration: none;
-        font-size: 13px;
         display: inline-flex;
         align-items: center;
         gap: 4px;
-        margin-top: 8px;
+        color: #1d9bf0;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        margin-top: 12px;
+        transition: color 0.2s;
       }
 
       .setup-link:hover {
+        color: #1a8cd8;
         text-decoration: underline;
       }
 
+      /* Section Divider */
       .divider {
         height: 1px;
-        background: rgba(255, 255, 255, 0.1);
-        margin: 16px 0;
+        background: #2f3336;
+        margin: 8px 0;
       }
 
-      .advanced-section {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 12px;
-        padding: 16px;
+      /* Expandable Section */
+      .section {
+        background: #16181c;
+        border-radius: 16px;
         margin-bottom: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        overflow: hidden;
       }
 
-      .advanced-header {
+      .section-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding: 16px 20px;
         cursor: pointer;
-        user-select: none;
-        padding: 4px;
-        border-radius: 8px;
         transition: background 0.2s;
       }
 
-      .advanced-header:hover {
-        background: rgba(255, 255, 255, 0.05);
+      .section-header:hover {
+        background: #1d1f23;
       }
 
-      .advanced-title {
-        font-size: 14px;
+      .section-title {
+        font-size: 15px;
         font-weight: 600;
-        color: rgba(255, 255, 255, 0.9);
+        color: #e7e9ea;
       }
 
-      .expand-button {
-        background: none;
-        border: none;
-        color: rgba(255, 255, 255, 0.6);
+      .expand-icon {
+        color: #71767b;
         font-size: 12px;
-        cursor: pointer;
-        padding: 4px;
-        transition: transform 0.3s ease;
+        transition: transform 0.2s ease;
       }
 
-      .expand-button.expanded {
+      .expand-icon.expanded {
         transform: rotate(180deg);
       }
 
-      .advanced-content {
+      .section-content {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;
       }
 
-      .advanced-content.expanded {
-        max-height: 300px;
-        margin-top: 16px;
+      .section-content.expanded {
+        max-height: 600px;
       }
 
-      .advanced-description {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.5);
-        margin-bottom: 12px;
+      .section-inner {
+        padding: 0 20px 16px;
       }
 
+      .section-description {
+        font-size: 13px;
+        color: #71767b;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #2f3336;
+      }
+
+      /* Option Items */
       .option-item {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 10px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 12px 0;
+        border-bottom: 1px solid #2f3336;
       }
 
       .option-item:last-child {
         border-bottom: none;
       }
 
-      .advanced-content .divider {
-        height: 1px;
-        background: rgba(255, 255, 255, 0.1);
-        margin: 16px 0;
-      }
-
       .option-info {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
       }
 
       .option-icon {
-        font-size: 18px;
+        font-size: 16px;
+        width: 24px;
+        text-align: center;
       }
 
       .option-label {
         font-size: 14px;
-        color: rgba(255, 255, 255, 0.8);
+        color: #e7e9ea;
       }
 
+      /* Mini Toggle */
       .mini-toggle {
-        width: 44px;
-        height: 24px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
+        width: 40px;
+        height: 22px;
+        background: #3d4144;
+        border-radius: 9999px;
         position: relative;
         cursor: pointer;
-        transition: background 0.3s ease;
+        transition: background 0.2s ease;
       }
 
       .mini-toggle.active {
-        background: #ef4444;
+        background: #f4212e;
       }
 
       .mini-toggle-knob {
-        width: 20px;
-        height: 20px;
-        background: #fff;
+        width: 18px;
+        height: 18px;
+        background: #ffffff;
         border-radius: 50%;
         position: absolute;
         top: 2px;
         left: 2px;
-        transition: transform 0.3s ease;
+        transition: transform 0.2s ease;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
       }
 
       .mini-toggle.active .mini-toggle-knob {
-        transform: translateX(20px);
+        transform: translateX(18px);
       }
 
       /* Settings Section */
-      .settings-section {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 12px;
-        padding: 16px;
-        margin-bottom: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .settings-header {
-        margin-bottom: 12px;
-      }
-
-      .settings-title {
-        font-size: 14px;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.9);
-      }
-
-      .settings-content {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
       .settings-item {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 12px;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 8px;
+        padding: 16px 20px;
       }
 
       .settings-info {
         display: flex;
         align-items: center;
         gap: 12px;
-        flex: 1;
       }
 
       .settings-icon {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       .settings-text {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 2px;
       }
 
       .settings-label {
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.6);
+        color: #71767b;
       }
 
       .settings-value {
         font-size: 15px;
         font-weight: 600;
-        color: rgba(255, 255, 255, 0.9);
+        color: #e7e9ea;
       }
 
-      .settings-edit-button {
-        background: rgba(96, 165, 250, 0.15);
-        border: 1px solid rgba(96, 165, 250, 0.3);
-        color: #60a5fa;
+      .edit-button {
+        background: transparent;
+        border: 1px solid #536471;
+        color: #e7e9ea;
         padding: 8px 16px;
-        border-radius: 6px;
+        border-radius: 9999px;
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 700;
         cursor: pointer;
         transition: all 0.2s;
       }
 
-      .settings-edit-button:hover {
-        background: rgba(96, 165, 250, 0.25);
-        border-color: rgba(96, 165, 250, 0.5);
+      .edit-button:hover {
+        background: rgba(239, 243, 244, 0.1);
+        border-color: #e7e9ea;
       }
 
+      /* Stats Button */
       .stats-button {
-        display: block;
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
         padding: 12px;
-        background: rgba(96, 165, 250, 0.15);
-        border: 1px solid rgba(96, 165, 250, 0.3);
-        border-radius: 8px;
-        color: #60a5fa;
+        background: transparent;
+        border: 1px solid #536471;
+        border-radius: 9999px;
+        color: #e7e9ea;
         text-decoration: none;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 700;
         transition: all 0.2s;
         margin-bottom: 16px;
       }
 
       .stats-button:hover {
-        background: rgba(96, 165, 250, 0.25);
-        border-color: rgba(96, 165, 250, 0.5);
+        background: rgba(239, 243, 244, 0.1);
+        border-color: #e7e9ea;
       }
 
+      /* Footer */
       .footer {
         text-align: center;
-        font-size: 11px;
-        color: rgba(255, 255, 255, 0.4);
+        padding: 12px 20px 20px;
+        font-size: 12px;
+        color: #536471;
       }
 
-      /* Modal */
+      /* Modal Overlay */
       .modal-overlay {
         display: none;
         position: fixed;
@@ -443,7 +434,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(91, 112, 131, 0.4);
         z-index: 1000;
         align-items: center;
         justify-content: center;
@@ -454,31 +445,32 @@
         display: flex;
       }
 
+      /* Modal */
       .modal {
-        background: #1a1a2e;
+        background: #000000;
         border-radius: 16px;
-        padding: 24px;
+        padding: 32px 28px;
         width: 100%;
         max-width: 320px;
         max-height: 90vh;
         overflow-y: auto;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        animation: slideUp 0.3s ease-out;
+        border: 1px solid #2f3336;
+        animation: modalSlide 0.2s ease-out;
       }
 
-      @keyframes slideUp {
+      @keyframes modalSlide {
         from {
-          transform: translateY(20px);
+          transform: scale(0.95);
           opacity: 0;
         }
         to {
-          transform: translateY(0);
+          transform: scale(1);
           opacity: 1;
         }
       }
 
       .modal-icon {
-        font-size: 48px;
+        font-size: 40px;
         text-align: center;
         margin-bottom: 16px;
       }
@@ -487,104 +479,68 @@
         font-size: 20px;
         font-weight: 700;
         text-align: center;
-        margin-bottom: 20px;
-        color: #ef4444;
+        margin-bottom: 8px;
+        color: #e7e9ea;
+      }
+
+      .modal-title.warning {
+        color: #f4212e;
       }
 
       .modal-message {
         font-size: 14px;
-        color: rgba(255, 255, 255, 0.7);
+        color: #71767b;
         text-align: center;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
         line-height: 1.5;
       }
 
       .modal-challenge {
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.7);
+        color: #71767b;
         text-align: center;
         margin-bottom: 12px;
       }
 
       .modal-phrase {
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 500;
         text-align: center;
-        color: #fbbf24;
-        background: rgba(251, 191, 36, 0.1);
-        padding: 12px;
-        border-radius: 8px;
+        color: #ffd400;
+        background: rgba(255, 212, 0, 0.1);
+        padding: 16px;
+        border-radius: 12px;
         margin-bottom: 16px;
-        border: 1px solid rgba(251, 191, 36, 0.2);
+        border: 1px solid rgba(255, 212, 0, 0.2);
         line-height: 1.6;
       }
 
       .modal-input {
         width: 100%;
-        padding: 12px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 14px 16px;
+        background: #000000;
+        border: 1px solid #2f3336;
         border-radius: 8px;
-        color: #fff;
-        font-size: 13px;
+        color: #e7e9ea;
+        font-size: 14px;
         margin-bottom: 16px;
         font-family: inherit;
+        transition: border-color 0.2s;
       }
 
       .modal-input::placeholder {
-        color: rgba(255, 255, 255, 0.4);
+        color: #536471;
       }
 
       .modal-input:focus {
         outline: none;
-        border-color: #fbbf24;
-      }
-
-      .modal-buttons {
-        display: flex;
-        gap: 8px;
-      }
-
-      .modal-button {
-        flex: 1;
-        padding: 12px;
-        border: none;
-        border-radius: 8px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-family: inherit;
-      }
-
-      .modal-button.cancel {
-        background: rgba(255, 255, 255, 0.1);
-        color: #fff;
-      }
-
-      .modal-button.cancel:hover {
-        background: rgba(255, 255, 255, 0.15);
-      }
-
-      .modal-button.confirm {
-        background: #ef4444;
-        color: #fff;
-      }
-
-      .modal-button.confirm:hover {
-        background: #dc2626;
-      }
-
-      .modal-button:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
+        border-color: #1d9bf0;
       }
 
       .modal-error {
-        font-size: 12px;
-        color: #ef4444;
+        font-size: 13px;
+        color: #f4212e;
         text-align: center;
-
         margin-bottom: 16px;
         display: none;
       }
@@ -593,164 +549,286 @@
         display: block;
       }
 
-      /* Setup Modal */
+      .modal-buttons {
+        display: flex;
+        gap: 12px;
+      }
+
+      .modal-button {
+        flex: 1;
+        padding: 12px 16px;
+        border: none;
+        border-radius: 9999px;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+      }
+
+      .modal-button.cancel {
+        background: transparent;
+        border: 1px solid #536471;
+        color: #e7e9ea;
+      }
+
+      .modal-button.cancel:hover {
+        background: rgba(239, 243, 244, 0.1);
+        border-color: #e7e9ea;
+      }
+
+      .modal-button.confirm {
+        background: #f4212e;
+        color: #ffffff;
+      }
+
+      .modal-button.confirm:hover {
+        background: #dc1d28;
+      }
+
+      .modal-button.confirm.green {
+        background: #00ba7c;
+      }
+
+      .modal-button.confirm.green:hover {
+        background: #00a06a;
+      }
+
+      /* Setup Input */
       .setup-input {
         width: 100%;
-        padding: 12px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 14px 16px;
+        background: #000000;
+        border: 1px solid #2f3336;
         border-radius: 8px;
-        color: #fff;
-        font-size: 16px;
-        margin-bottom: 12px;
+        color: #e7e9ea;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
         font-family: inherit;
         text-align: center;
+        letter-spacing: 1px;
       }
 
       .setup-input::placeholder {
-        color: rgba(255, 255, 255, 0.4);
+        color: #536471;
+        font-weight: 400;
       }
 
       .setup-input:focus {
         outline: none;
-        border-color: #fbbf24;
+        border-color: #1d9bf0;
       }
 
       .setup-hint {
         font-size: 12px;
-        color: rgba(255, 255, 255, 0.5);
+        color: #536471;
         text-align: center;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #3d4144;
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #536471;
       }
     </style>
   </head>
   <body>
+    <!-- Header -->
     <div class="header">
-      <img
-        src="images/icon-header.png"
-        alt="Logo"
-        class="logo"
-        width="48"
-        height="48"
-      />
-      <div class="title">LockBird</div>
-    </div>
-
-    <div class="status-card">
-      <div class="status-row">
-        <span class="status-label">Status</span>
-        <div class="status-badge" id="statusBadge">
-          <div class="pulse"></div>
-          <span id="statusText">Active</span>
-        </div>
+      <div class="header-left">
+        <img
+          src="images/icon-header.png"
+          alt="Logo"
+          class="logo"
+        />
+        <div class="title">LockBird</div>
       </div>
-
-      <div class="toggle-container">
-        <span class="toggle-label">Block Feed</span>
-        <div class="toggle active" id="toggle">
-          <div class="toggle-knob"></div>
-        </div>
+      <div class="status-pill active" id="statusBadge">
+        <div class="status-dot"></div>
+        <span id="statusText">Active</span>
       </div>
     </div>
 
-    <!-- Money Stats -->
-    <div class="money-card" id="moneyCard">
-      <div class="money-title" id="moneyTitle">💰 MONEY SAVED TODAY</div>
-      <div class="money-amount" id="moneyAmount">$0.00</div>
-      <div class="money-subtitle" id="moneySubtitle">Keep it up! 🎯</div>
-      <a href="#" class="setup-link" id="setupLink"
-        >⚙️ Set your annual salary</a
-      >
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="advanced-section">
-      <div class="advanced-header">
-        <span class="advanced-title">⚙️ Advanced Options</span>
-        <button class="expand-button" id="expandButton">▼</button>
-      </div>
-      <div class="advanced-content" id="advancedContent">
-        <p class="advanced-description">
-          Block additional distractions (optional)
-        </p>
-
-        <div class="option-item">
-          <div class="option-info">
-            <span class="option-icon">🔔</span>
-            <span class="option-label">Notifications</span>
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Main Toggle -->
+      <div class="main-toggle-card">
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <h3>Block Feed</h3>
+            <p>Hide the home timeline</p>
           </div>
-          <div class="mini-toggle" id="toggleNotifications">
-            <div class="mini-toggle-knob"></div>
-          </div>
-        </div>
-
-        <div class="option-item">
-          <div class="option-info">
-            <span class="option-icon">💬</span>
-            <span class="option-label">Messages</span>
-          </div>
-          <div class="mini-toggle" id="toggleMessages">
-            <div class="mini-toggle-knob"></div>
-          </div>
-        </div>
-
-        <div class="option-item">
-          <div class="option-info">
-            <span class="option-icon">🔍</span>
-            <span class="option-label">Explore/Search</span>
-          </div>
-          <div class="mini-toggle" id="toggleExplore">
-            <div class="mini-toggle-knob"></div>
-          </div>
-        </div>
-
-        <div class="option-item">
-          <div class="option-info">
-            <span class="option-icon">✍️</span>
-            <span class="option-label">Post Button</span>
-          </div>
-          <div class="mini-toggle" id="togglePost">
-            <div class="mini-toggle-knob"></div>
+          <div class="toggle active" id="toggle">
+            <div class="toggle-knob"></div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="divider"></div>
-
-    <!-- Settings Section -->
-    <div class="settings-section">
-      <div class="settings-header">
-        <span class="settings-title">⚙️ Settings</span>
+      <!-- Money Card -->
+      <div class="money-card" id="moneyCard">
+        <div class="money-header">
+          <span class="money-icon">💰</span>
+          <span class="money-label" id="moneyTitle">Money Saved Today</span>
+        </div>
+        <div class="money-amount" id="moneyAmount">$0.00</div>
+        <div class="money-subtitle" id="moneySubtitle">Keep it up! 🎯</div>
+        <a href="#" class="setup-link" id="setupLink">Set your salary →</a>
       </div>
-      <div class="settings-content">
+
+      <!-- Advanced Options -->
+      <div class="section">
+        <div class="section-header" id="advancedHeader">
+          <span class="section-title">Advanced Blocking</span>
+          <span class="expand-icon" id="expandButton">▼</span>
+        </div>
+        <div class="section-content" id="advancedContent">
+          <div class="section-inner">
+            <p class="section-description">Block additional distractions</p>
+
+            <div class="option-item">
+              <div class="option-info">
+                <span class="option-icon">🔔</span>
+                <span class="option-label">Notifications</span>
+              </div>
+              <div class="mini-toggle" id="toggleNotifications">
+                <div class="mini-toggle-knob"></div>
+              </div>
+            </div>
+
+            <div class="option-item">
+              <div class="option-info">
+                <span class="option-icon">💬</span>
+                <span class="option-label">Messages</span>
+              </div>
+              <div class="mini-toggle" id="toggleMessages">
+                <div class="mini-toggle-knob"></div>
+              </div>
+            </div>
+
+            <div class="option-item">
+              <div class="option-info">
+                <span class="option-icon">🔍</span>
+                <span class="option-label">Explore / Search</span>
+              </div>
+              <div class="mini-toggle" id="toggleExplore">
+                <div class="mini-toggle-knob"></div>
+              </div>
+            </div>
+
+            <div class="option-item">
+              <div class="option-info">
+                <span class="option-icon">✍️</span>
+                <span class="option-label">Post Button</span>
+              </div>
+              <div class="mini-toggle" id="togglePost">
+                <div class="mini-toggle-knob"></div>
+              </div>
+            </div>
+
+            <div class="option-item">
+              <div class="option-info">
+                <span class="option-icon">🏠</span>
+                <span class="option-label">Home Button</span>
+              </div>
+              <div class="mini-toggle" id="toggleHome">
+                <div class="mini-toggle-knob"></div>
+              </div>
+            </div>
+
+            <div class="option-item">
+              <div class="option-info">
+                <span class="option-icon">🔥</span>
+                <span class="option-label">Trending Topics</span>
+              </div>
+              <div class="mini-toggle" id="toggleTrending">
+                <div class="mini-toggle-knob"></div>
+              </div>
+            </div>
+
+            <div class="option-item">
+              <div class="option-info">
+                <span class="option-icon">🤖</span>
+                <span class="option-label">Grok AI</span>
+              </div>
+              <div class="mini-toggle" id="toggleGrok">
+                <div class="mini-toggle-knob"></div>
+              </div>
+            </div>
+
+            <div class="option-item">
+              <div class="option-info">
+                <span class="option-icon">👥</span>
+                <span class="option-label">Communities</span>
+              </div>
+              <div class="mini-toggle" id="toggleCommunities">
+                <div class="mini-toggle-knob"></div>
+              </div>
+            </div>
+
+            <div class="option-item">
+              <div class="option-info">
+                <span class="option-icon">📋</span>
+                <span class="option-label">Lists</span>
+              </div>
+              <div class="mini-toggle" id="toggleLists">
+                <div class="mini-toggle-knob"></div>
+              </div>
+            </div>
+
+            <div class="option-item">
+              <div class="option-info">
+                <span class="option-icon">🔖</span>
+                <span class="option-label">Bookmarks</span>
+              </div>
+              <div class="mini-toggle" id="toggleBookmarks">
+                <div class="mini-toggle-knob"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <div class="section">
         <div class="settings-item">
           <div class="settings-info">
-            <span class="settings-icon">💰</span>
+            <span class="settings-icon">💵</span>
             <div class="settings-text">
               <div class="settings-label">Annual Salary</div>
               <div class="settings-value" id="currentSalary">Not set</div>
             </div>
           </div>
-          <button class="settings-edit-button" id="editSalaryButton">
-            Edit
-          </button>
+          <button class="edit-button" id="editSalaryButton">Edit</button>
         </div>
       </div>
+
+      <!-- Stats Button -->
+      <a href="statistics.html" class="stats-button" id="statsButton">
+        📊 View Statistics
+      </a>
+
+   
     </div>
-
-    <div class="divider"></div>
-
-    <a href="statistics.html" class="stats-button" id="statsButton">
-      📊 View Statistics
-    </a>
 
     <!-- Disable Confirmation Modal -->
     <div class="modal-overlay" id="modalOverlay">
       <div class="modal">
         <div class="modal-icon">⚠️</div>
-        <div class="modal-title">Are you sure?</div>
+        <div class="modal-title warning">Are you sure?</div>
         <div class="modal-challenge">Type the phrase below to disable:</div>
         <div class="modal-phrase" id="modalPhrase"></div>
         <input
@@ -759,15 +837,19 @@
           id="modalInput"
           placeholder="Type the exact phrase..."
           autocomplete="off"
+          onpaste="return false;"
+          oncopy="return false;"
+          oncut="return false;"
+          ondrop="return false;"
+          ondragover="return false;"
+          oncontextmenu="return false;"
         />
         <div class="modal-error" id="modalError">
           Incorrect phrase. Try again.
         </div>
         <div class="modal-buttons">
           <button class="modal-button cancel" id="modalCancel">Cancel</button>
-          <button class="modal-button confirm" id="modalConfirm">
-            Disable
-          </button>
+          <button class="modal-button confirm" id="modalConfirm">Disable</button>
         </div>
       </div>
     </div>
@@ -776,28 +858,21 @@
     <div class="modal-overlay" id="setupModal">
       <div class="modal">
         <div class="modal-icon">💰</div>
-        <div class="modal-title">Set Your Annual Salary</div>
+        <div class="modal-title">Set Annual Salary</div>
         <div class="modal-message">
-          Enter your annual salary in USD to see how much money you're saving
-          (or losing) by using X.
+          Enter your annual salary to see how much money you're saving by staying focused.
         </div>
         <input
           type="text"
           class="setup-input"
           id="salaryInput"
-          placeholder="90000"
+          placeholder="$90,000"
           inputmode="numeric"
         />
-        <div class="setup-hint">This is stored locally and never shared</div>
+        <div class="setup-hint">Stored locally • Never shared</div>
         <div class="modal-buttons">
           <button class="modal-button cancel" id="setupCancel">Cancel</button>
-          <button
-            class="modal-button confirm"
-            id="setupSave"
-            style="background: #22c55e"
-          >
-            Save
-          </button>
+          <button class="modal-button confirm green" id="setupSave">Save</button>
         </div>
       </div>
     </div>
