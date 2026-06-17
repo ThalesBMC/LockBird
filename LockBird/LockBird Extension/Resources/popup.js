@@ -144,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const togglePost = document.getElementById("togglePost");
   const toggleHome = document.getElementById("toggleHome");
   const toggleTrending = document.getElementById("toggleTrending");
+  const toggleRightSidebar = document.getElementById("toggleRightSidebar");
   const toggleGrok = document.getElementById("toggleGrok");
   const toggleCommunities = document.getElementById("toggleCommunities");
   const toggleLists = document.getElementById("toggleLists");
@@ -218,6 +219,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   toggleTrending.addEventListener("click", function () {
     toggleAdvancedOption("blockTrending", toggleTrending);
+  });
+
+  toggleRightSidebar.addEventListener("click", function () {
+    toggleAdvancedOption("blockRightSidebar", toggleRightSidebar);
   });
 
   toggleGrok.addEventListener("click", function () {
@@ -385,6 +390,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "blockPost",
         "blockHome",
         "blockTrending",
+        "blockRightSidebar",
         "blockGrok",
         "blockCommunities",
         "blockLists",
@@ -415,6 +421,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (result.blockPost) togglePost.classList.add("active");
         if (result.blockHome) toggleHome.classList.add("active");
         if (result.blockTrending) toggleTrending.classList.add("active");
+        if (result.blockRightSidebar) toggleRightSidebar.classList.add("active");
         if (result.blockGrok) toggleGrok.classList.add("active");
         if (result.blockCommunities) toggleCommunities.classList.add("active");
         if (result.blockLists) toggleLists.classList.add("active");
