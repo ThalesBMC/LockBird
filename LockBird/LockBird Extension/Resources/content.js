@@ -206,6 +206,13 @@
   let isEnabled = true;
   let styleElement = null;
   let messageInjected = false;
+  let applyStateTimer = null;
+  let domCheckScheduled = false;
+  let headRetryTimer = null;
+  let pendingHeadCallbacks = [];
+  let lastUrl = location.href;
+
+  const BLOCK_RETRY_DELAYS = [0, 75, 200, 500, 1000];
 
   // Advanced blocking options
   let advancedOptions = {
@@ -260,15 +267,16 @@
           advancedOptions.blockCommunities = result.blockCommunities || false;
           advancedOptions.blockLists = result.blockLists || false;
           advancedOptions.blockBookmarks = result.blockBookmarks || false;
-          applyState();
+          applyAdvancedBlocking();
+          scheduleApplyState(true);
         })
         .catch(() => {
           isEnabled = true;
-          applyState();
+          scheduleApplyState(true);
         });
     } else {
       isEnabled = true;
-      applyState();
+      scheduleApplyState(true);
     }
   }
 
@@ -277,16 +285,43 @@
     browser.runtime.onMessage.addListener((message) => {
       if (message.action === "toggleBlocking") {
         isEnabled = message.enabled;
-        applyState();
+        scheduleApplyState(true);
       }
       if (message.action === "updateAdvancedOptions") {
         Object.assign(advancedOptions, message.options);
         applyAdvancedBlocking();
+        scheduleApplyState(false);
       }
       if (message.action === "getState") {
         return Promise.resolve({ enabled: isEnabled });
       }
     });
+
+    // Popup messages only reach the active tab. Storage changes keep every
+    // open Twitter/X tab in sync after locking or unlocking.
+    if (browser.storage?.onChanged) {
+      browser.storage.onChanged.addListener((changes, areaName) => {
+        if (areaName !== "local") return;
+
+        if (changes.xFeedBlockerEnabled) {
+          isEnabled = changes.xFeedBlockerEnabled.newValue !== false;
+          scheduleApplyState(true);
+        }
+
+        const changedOptions = {};
+        Object.keys(advancedOptions).forEach((key) => {
+          if (changes[key]) {
+            changedOptions[key] = changes[key].newValue || false;
+          }
+        });
+
+        if (Object.keys(changedOptions).length > 0) {
+          Object.assign(advancedOptions, changedOptions);
+          applyAdvancedBlocking();
+          scheduleApplyState(false);
+        }
+      });
+    }
   }
 
   function applyState() {
@@ -295,10 +330,46 @@
     } else {
       showTimeline();
     }
-    applyAdvancedBlocking();
+  }
+
+  function scheduleApplyState(resetMessage) {
+    if (resetMessage) {
+      messageInjected = false;
+    }
+
+    if (applyStateTimer) {
+      clearTimeout(applyStateTimer);
+    }
+
+    applyStateTimer = setTimeout(() => {
+      applyStateTimer = null;
+      applyState();
+    }, 0);
+  }
+
+  function runWhenHeadReady(callback) {
+    if (document.head) {
+      callback();
+      return;
+    }
+
+    pendingHeadCallbacks.push(callback);
+    if (headRetryTimer) return;
+
+    headRetryTimer = setTimeout(() => {
+      headRetryTimer = null;
+      const callbacks = pendingHeadCallbacks;
+      pendingHeadCallbacks = [];
+      callbacks.forEach((pendingCallback) => pendingCallback());
+    }, 50);
   }
 
   function applyAdvancedBlocking() {
+    if (!document.head) {
+      runWhenHeadReady(applyAdvancedBlocking);
+      return;
+    }
+
     const existingAdvancedStyle = document.getElementById(
       "x-feed-blocker-advanced-style"
     );
@@ -439,13 +510,13 @@
   }
 
   function showTimeline() {
-    if (styleElement) {
-      styleElement.remove();
-      styleElement = null;
-    }
+    const existingStyle = document.getElementById("x-feed-blocker-style");
+    if (existingStyle) existingStyle.remove();
+    styleElement = null;
 
-    const msg = document.querySelector(".feed-blocked-message");
-    if (msg) msg.remove();
+    document
+      .querySelectorAll(".lockbird-blocked-message-container, .feed-blocked-message")
+      .forEach((element) => element.remove());
     messageInjected = false;
   }
 
@@ -455,24 +526,33 @@
       return;
     }
 
+    if (!document.head) {
+      runWhenHeadReady(() => scheduleApplyState(false));
+      return;
+    }
+
     // Ensure style element exists and is in the document
+    styleElement = document.getElementById("x-feed-blocker-style");
     if (!styleElement || !document.head.contains(styleElement)) {
       if (styleElement) styleElement.remove();
       styleElement = document.createElement("style");
       styleElement.id = "x-feed-blocker-style";
       styleElement.textContent = `
         [data-testid="primaryColumn"] section[role="region"] > div > div {
-          display: none !important;
+          visibility: hidden !important;
+          pointer-events: none !important;
         }
         [data-testid="primaryColumn"] [data-testid="cellInnerDiv"] {
-          display: none !important;
+          visibility: hidden !important;
+          pointer-events: none !important;
         }
         [data-testid="primaryColumn"] > div > div:first-child {
           display: block !important;
         }
         /* Also hide "For you" and "Following" tabs content */
         [data-testid="primaryColumn"] div[aria-label*="Timeline"] > div {
-          display: none !important;
+          visibility: hidden !important;
+          pointer-events: none !important;
         }
       `;
       document.head.appendChild(styleElement);
@@ -488,6 +568,7 @@
       const section = primaryColumn.querySelector('section[role="region"]');
       if (section && section.parentElement) {
         const messageDiv = document.createElement("div");
+        messageDiv.className = "lockbird-blocked-message-container";
         messageDiv.innerHTML = blockedMessage;
         section.parentElement.insertBefore(messageDiv, section);
         messageInjected = true;
@@ -496,6 +577,7 @@
         const firstChild = primaryColumn.querySelector('div > div');
         if (firstChild) {
           const messageDiv = document.createElement("div");
+          messageDiv.className = "lockbird-blocked-message-container";
           messageDiv.innerHTML = blockedMessage;
           firstChild.parentElement.insertBefore(messageDiv, firstChild.nextSibling);
           messageInjected = true;
@@ -514,15 +596,19 @@
   // Initial load
   loadState();
 
-  // Observer for dynamic changes (X is a SPA)
-  const observer = new MutationObserver(() => {
-    if (isEnabled && isHomePage()) {
+  function scheduleDomCheck() {
+    if (!isEnabled || !isHomePage() || domCheckScheduled) return;
+
+    domCheckScheduled = true;
+    requestAnimationFrame(() => {
+      domCheckScheduled = false;
       hideTimeline();
-    }
-  });
+    });
+  }
 
   function startObserver() {
     if (document.body) {
+      const observer = new MutationObserver(scheduleDomCheck);
       observer.observe(document.body, {
         childList: true,
         subtree: true,
@@ -535,17 +621,6 @@
   } else {
     document.addEventListener("DOMContentLoaded", startObserver);
   }
-
-  // Re-run on navigation (X uses History API)
-  let lastUrl = location.href;
-  new MutationObserver(() => {
-    const url = location.href;
-    if (url !== lastUrl) {
-      lastUrl = url;
-      messageInjected = false;
-      applyState();
-    }
-  }).observe(document, { subtree: true, childList: true });
 
   // Intercept History API for more reliable navigation detection
   const originalPushState = history.pushState;
@@ -562,38 +637,35 @@
   };
 
   window.addEventListener("popstate", handleNavigation);
+  window.addEventListener("hashchange", handleNavigation);
 
   function handleNavigation() {
-    messageInjected = false;
-    // Small delay to let Twitter render the new page
-    setTimeout(() => {
-      applyState();
-    }, 100);
-    // Double check after content loads
-    setTimeout(() => {
-      applyState();
-    }, 500);
+    const url = location.href;
+    const didUrlChange = url !== lastUrl;
+    lastUrl = url;
+
+    BLOCK_RETRY_DELAYS.forEach((delay) => {
+      setTimeout(() => {
+        scheduleApplyState(didUrlChange);
+      }, delay);
+    });
   }
 
-  // Periodic check to ensure blocking stays active (catches edge cases)
+  // Some Safari content-script contexts do not observe page-owned
+  // history mutations reliably, so keep this check lightweight.
   setInterval(() => {
-    if (isEnabled && isHomePage()) {
-      const primaryColumn = document.querySelector('[data-testid="primaryColumn"]');
-      const existingMessage = primaryColumn?.querySelector(".feed-blocked-message");
-      const styleExists = document.head.contains(styleElement);
-      
-      // Re-apply if message is missing or style was removed
-      if (!existingMessage || !styleExists) {
-        messageInjected = false;
-        hideTimeline();
-      }
+    if (location.href !== lastUrl) {
+      handleNavigation();
     }
-  }, 500); // Check every 500ms for faster response
+  }, 300);
 
   // Intercept clicks on Home button, logo, and navigation links
   document.addEventListener("click", function (e) {
+    const target = e.target;
+    if (!target || !target.closest) return;
+
     // Check for home navigation elements
-    const homeTarget = e.target.closest(
+    const homeTarget = target.closest(
       'a[href="/home"], ' +
       'a[data-testid="AppTabBar_Home_Link"], ' +
       'a[aria-label="Home"], ' +
@@ -603,17 +675,7 @@
     );
     
     if (homeTarget && isEnabled) {
-      // Delay to let navigation complete, then apply blocking
-      setTimeout(() => {
-        messageInjected = false;
-        applyState();
-      }, 150);
-      setTimeout(() => {
-        applyState();
-      }, 400);
-      setTimeout(() => {
-        applyState();
-      }, 800);
+      handleNavigation();
     }
   }, true);
 
@@ -624,10 +686,7 @@
       if (activeElement && activeElement.matches && 
           activeElement.matches('a[href="/home"], a[data-testid="AppTabBar_Home_Link"], a[aria-label="Home"]')) {
         if (isEnabled) {
-          setTimeout(() => {
-            messageInjected = false;
-            applyState();
-          }, 200);
+          handleNavigation();
         }
       }
     }
@@ -636,18 +695,14 @@
   // Focus/visibility change - recheck when user returns to tab
   document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === "visible" && isEnabled && isHomePage()) {
-      setTimeout(() => {
-        applyState();
-      }, 100);
+      scheduleApplyState(true);
     }
   });
 
   // Window focus - recheck blocking
   window.addEventListener("focus", function () {
     if (isEnabled && isHomePage()) {
-      setTimeout(() => {
-        applyState();
-      }, 100);
+      scheduleApplyState(true);
     }
   });
 })();
